@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 
+           transition-colors duration-300 transform hover:scale-105 focus:outline-none 
+           focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-green-700 px-6 py-2 rounded-full hover:bg-green-50 
+           transition-colors duration-300 transform hover:scale-105 focus:outline-none 
+           focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 shadow-md;
+  }
+
+  .input-field {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+           focus:border-green-500 focus:ring focus:ring-green-200 
+           focus:ring-opacity-50 transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl 
+           transition-shadow duration-300 transform hover:-translate-y-1;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Fade in animation for page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
