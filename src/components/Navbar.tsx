@@ -124,7 +124,7 @@ const Navbar = () => {
               className="flex-shrink-0 flex items-center"
             >
               <motion.img 
-                src="public/assets/logo.png"
+                src="assets/logo.png"
                 alt="ME Solar Logo" 
                 className="h-36 w-36"
                 whileHover={{ scale: 1.1 }}
