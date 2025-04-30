@@ -3,23 +3,30 @@ import { motion } from 'framer-motion';
 const Company = () => {
   const team = [
     {
-      name: "Sarah Johnson",
-      role: "CEO & Founder",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      bio: "20+ years of experience in renewable energy"
+      name: "Manoj Kumar",
+      role: "Founder & Managing Director",
+      image: "",
+      bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
     },
     {
-      name: "Michael Chen",
-      role: "Chief Technology Officer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      bio: "Leading innovation in solar technology"
+      name: "Sunil Sagar",
+      role: "Founder , Director & Chief Executive Officer (CEO)",
+      image: "",
+      bio: "A postgraduate in finance with over 10 years of experience in the solar and IT sectors, driving systematic corporate management."
     },
     {
-      name: "Emily Rodriguez",
-      role: "Operations Director",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      bio: "Expert in sustainable operations"
-    }
+      name: "Sadha Gupta",
+      role: "Director- Stratergy Planning",
+      image: "",
+      bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
+    },
+    {
+      name: "Reena Gupta",
+      role: "Director - Business & Planning",
+      image: "",
+      bio: "A business professional since 2015, with expertise in practical strategy, collaboration, and growth, fostering a creative and people-focused approach."
+    },
+
   ];
 
   const values = [

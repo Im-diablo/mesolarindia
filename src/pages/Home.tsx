@@ -1,6 +1,26 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+// Define a type for news items
+interface NewsItem {
+  title: string;
+  date: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  image: string;
+}
+
+// Define a type for service items
+interface ServiceItem {
+  title: string;
+  description: string;
+  image: string;
+  fullDescription: string;
+  benefits: string[];
+  pricing: string;
+}
+
 const Home = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -8,6 +28,19 @@ const Home = () => {
     phone: '',
     subject: '',
     message: ''
+  });
+
+  // Update state and function to use the NewsItem and ServiceItem types
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  
+  // Added state for booking form within service modal
+  const [bookingData, setBookingData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    notes: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,11 +54,138 @@ const Home = () => {
       [e.target.name]: e.target.value
     });
   };
+  
+  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setBookingData({
+      ...bookingData,
+      [e.target.name]: e.target.value
+    });
+  };
+  
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Booking submitted:", bookingData);
+    // Here you would typically send the booking data to your server
+    alert("Your booking request has been submitted!");
+    setBookingData({
+      name: '',
+      email: '',
+      phone: '',
+      date: '',
+      notes: ''
+    });
+    setSelectedService(null); // Close the modal after submission
+  };
+
+  // News items with full content
+  const newsItems = [
+    {
+      title: "SolarTech Expands Operations",
+      date: "February 15, 2024",
+      category: "Company News",
+      excerpt: "We're excited to announce our expansion into three new states.",
+      content: "SolarTech is proud to announce its expansion into three new strategic markets: Arizona, Nevada, and New Mexico. This expansion will allow us to better serve customers across the Southwest region, where solar energy potential is among the highest in the nation. Our expansion includes new installation teams, customer service centers, and partnerships with local businesses. We expect to create over 200 new jobs in these regions within the next year, further supporting the transition to renewable energy across America.",
+      image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "New Solar Technology Breakthrough",
+      date: "February 10, 2024",
+      category: "Innovation",
+      excerpt: "Our research team has developed a new solar panel technology.",
+      content: "After three years of intensive research and development, our engineering team has created a revolutionary new solar panel design that increases energy efficiency by 27% while reducing manufacturing costs. The new SolarMax panels use a proprietary photovoltaic material that captures a wider spectrum of light, including lower-intensity wavelengths during cloudy conditions. This breakthrough technology will be available to residential customers starting next quarter and represents a significant step forward in making solar energy more accessible and efficient for everyone.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "Environmental Award Winner",
+      date: "February 5, 2024",
+      category: "Awards",
+      excerpt: "SolarTech receives the 2024 Green Innovation Award.",
+      content: "SolarTech has been honored with the prestigious 2024 Green Innovation Award by the National Renewable Energy Council. This recognition celebrates our commitment to environmental sustainability and technological innovation in the solar industry. The award specifically highlighted our community solar projects, which have provided clean energy access to over 50,000 households in underserved communities. We're proud to be recognized for our efforts and remain dedicated to our mission of making clean energy solutions available to everyone.",
+      image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    }
+  ];
+  
+  // Services with detailed content
+  const services = [
+    {
+      title: "Residential Solar Installation",
+      description: "Complete solar solutions for homes, including panel installation, battery storage, and smart monitoring systems.",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "Our residential solar installation service offers a comprehensive solution for homeowners looking to reduce their carbon footprint and energy bills. We handle everything from initial assessment and design to installation and monitoring setup. Our expert team will evaluate your home's solar potential, recommend the optimal panel configuration, and install high-efficiency solar panels with minimal disruption to your daily life. We also offer integrated battery storage solutions to ensure you have power even when the sun isn't shining.",
+      benefits: [
+        "Reduce monthly energy bills by up to 70%",
+        "Increase property value",
+        "25-year warranty on all installations",
+        "Real-time energy monitoring via smartphone app",
+        "Available federal and state tax incentives"
+      ],
+      pricing: "Starting at $15,000 (before incentives)"
+    },
+    {
+      title: "Commercial Solar Systems",
+      description: "Large-scale solar installations for businesses, warehouses, and industrial facilities.",
+      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "Our commercial solar solutions are designed to help businesses reduce operational costs while meeting sustainability goals. We specialize in designing and installing large-scale solar systems for commercial buildings, warehouses, manufacturing facilities, and agricultural operations. Our team works closely with your business to develop a customized solar solution that maximizes your ROI and provides long-term energy independence. We handle all aspects of the project, from permitting and design to installation and maintenance.",
+      benefits: [
+        "Significant reduction in operational expenses",
+        "Quick ROI - typically 3-7 years",
+        "Enhanced corporate sustainability profile",
+        "Protection against rising energy costs",
+        "Potential for LEED certification points"
+      ],
+      pricing: "Custom quotes based on facility size and energy needs"
+    },
+    {
+      title: "Solar Maintenance",
+      description: "Regular maintenance and repair services to ensure optimal performance of your solar system.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "Maximize the efficiency and lifespan of your solar investment with our comprehensive maintenance services. Regular maintenance is essential to ensure your solar system operates at peak efficiency. Our technicians are trained to diagnose and repair all types of solar systems, regardless of who installed them. We offer scheduled maintenance packages as well as emergency repair services. Our maintenance includes panel cleaning, inspection of electrical components, performance testing, and monitoring system verification.",
+      benefits: [
+        "Maintain optimal energy production",
+        "Early detection of potential issues",
+        "Extended system lifespan",
+        "Maintain manufacturer warranty compliance",
+        "24/7 emergency repair service available"
+      ],
+      pricing: "Maintenance plans starting at $199/year"
+    },
+    {
+      title: "Energy Storage Solutions",
+      description: "Advanced battery storage systems for continuous power supply during non-solar hours.",
+      image: "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "Our energy storage solutions provide the missing link in solar energy independence. We offer cutting-edge battery systems that store excess energy produced during sunny periods for use during cloudy days or nighttime. Our battery solutions are scalable to meet any energy storage need, from small residential systems to large commercial applications. We partner with industry-leading manufacturers to provide reliable, safe, and long-lasting battery systems that integrate seamlessly with new or existing solar installations.",
+      benefits: [
+        "Energy independence from the grid",
+        "Backup power during outages",
+        "Use stored solar energy during peak rate hours",
+        "Smart energy management via integrated app",
+        "Expandable capacity for growing energy needs"
+      ],
+      pricing: "Systems starting at $8,000 (before incentives)"
+    }
+  ];
+
+  // Functions to handle modals
+  const openNewsModal = (news: NewsItem) => {
+    setSelectedNews(news);
+  };
+
+  const closeNewsModal = () => {
+    setSelectedNews(null);
+  };
+  
+  const openServiceModal = (service: ServiceItem) => {
+    setSelectedService(service);
+  };
+  
+  const closeServiceModal = () => {
+    setSelectedService(null);
+  };
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="relative h-screen bg-gradient-to-r from-orange-300 to-orange-500">
+      <section id="home" className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/src/homepage-background.jpg')" }}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div 
@@ -55,7 +215,7 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Company</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">About Company</h2>
             <p className="text-xl text-gray-600">
               Leading the way in sustainable energy solutions
             </p>
@@ -87,36 +247,45 @@ const Home = () => {
             </motion.div>
           </div>
 
+          {/* Team members with 4th centered if alone */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
-                role: "CEO & Founder",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                bio: "20+ years of experience in renewable energy"
+                name: "Manoj Kumar",
+                role: "Founder & Managing Director",
+                image: "",
+                bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
               },
               {
-                name: "Michael Chen",
-                role: "Chief Technology Officer",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                bio: "Leading innovation in solar technology"
+                name: "Sunil Sagar",
+                role: "Founder , Director & Chief Executive Officer (CEO)",
+                image: "",
+                bio: "A postgraduate in finance with over 10 years of experience in the solar and IT sectors, driving systematic corporate management."
               },
               {
-                name: "Emily Rodriguez",
-                role: "Operations Director",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                bio: "Expert in sustainable operations"
-              }
+                name: "Sadha Gupta",
+                role: "Director- Stratergy Planning",
+                image: "",
+                bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
+              },
+              {
+                name: "Reena Gupta",
+                role: "Director - Business & Planning",
+                image: "",
+                bio: "A business professional since 2015, with expertise in practical strategy, collaboration, and growth, fostering a creative and people-focused approach."
+              },
             ].map((member, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg"
+                className={`bg-white rounded-lg overflow-hidden shadow-lg ${
+                  index === 3 && "md:col-start-2 md:col-end-3"
+                }`}
               >
                 <img
-                  src={member.image}
+                  src={member.image || "/api/placeholder/400/320"}
                   alt={member.name}
                   className="w-full h-64 object-cover"
                 />
@@ -133,8 +302,8 @@ const Home = () => {
         </div>
       </section>
 
-            {/* Services Section */}
-            <section id="services" className="py-20 bg-white">
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -148,46 +317,30 @@ const Home = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Residential Solar Installation",
-                description: "Complete solar solutions for homes, including panel installation, battery storage, and smart monitoring systems.",
-                image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "Commercial Solar Systems",
-                description: "Large-scale solar installations for businesses, warehouses, and industrial facilities.",
-                image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "Solar Maintenance",
-                description: "Regular maintenance and repair services to ensure optimal performance of your solar system.",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "Energy Storage Solutions",
-                description: "Advanced battery storage systems for continuous power supply during non-solar hours.",
-                image: "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              }
-            ].map((service, index) => (
+            {services.map((service, index, servicesArray) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg"
+                className={`bg-white rounded-lg overflow-hidden shadow-lg ${
+                  index === 3 && servicesArray.length % 2 !== 0 ? "md:col-span-2 max-w-md mx-auto" : ""
+                }`}
               >
                 <img
-                  src={service.image}
+                  src={service.image || "/api/placeholder/400/320"}
                   alt={service.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-40 object-cover"
                 />
-                <div className="p-6">
+                <div className="p-4">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                     {service.title}
                   </h3>
                   <p className="text-gray-600">{service.description}</p>
-                  <button className="mt-4 bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">
+                  <button 
+                    className="mt-4 bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"
+                    onClick={() => openServiceModal(service)}
+                  >
                     Learn More
                   </button>
                 </div>
@@ -196,6 +349,143 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Service Modal */}
+      {selectedService && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={closeServiceModal}
+        >
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[80vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative">
+              <img
+                src={selectedService.image || "/api/placeholder/400/320"}
+                alt={selectedService.title}
+                className="w-full h-40 object-cover"
+              />
+              <button
+                onClick={closeServiceModal}
+                className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{selectedService.title}</h2>
+              <p className="text-gray-700 mb-6 leading-relaxed">{selectedService.fullDescription}</p>
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Benefits:</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  {selectedService.benefits.map((benefit, index) => (
+                    <li key={index} className="text-gray-700">{benefit}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Pricing:</h3>
+                <p className="text-gray-700">{selectedService.pricing}</p>
+              </div>
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Book This Service</h3>
+                <form onSubmit={handleBookingSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="booking-name" className="block text-sm font-medium text-gray-700">Name</label>
+                      <input
+                        type="text"
+                        id="booking-name"
+                        name="name"
+                        value={bookingData.name}
+                        onChange={handleBookingChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="booking-email" className="block text-sm font-medium text-gray-700">Email</label>
+                      <input
+                        type="email"
+                        id="booking-email"
+                        name="email"
+                        value={bookingData.email}
+                        onChange={handleBookingChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="booking-phone" className="block text-sm font-medium text-gray-700">Phone</label>
+                      <input
+                        type="tel"
+                        id="booking-phone"
+                        name="phone"
+                        value={bookingData.phone}
+                        onChange={handleBookingChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="booking-date" className="block text-sm font-medium text-gray-700">Preferred Date</label>
+                      <input
+                        type="date"
+                        id="booking-date"
+                        name="date"
+                        value={bookingData.date}
+                        onChange={handleBookingChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="booking-notes" className="block text-sm font-medium text-gray-700">Additional Notes</label>
+                    <textarea
+                      id="booking-notes"
+                      name="notes"
+                      rows={3}
+                      value={bookingData.notes}
+                      onChange={handleBookingChange}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                    ></textarea>
+                  </div>
+                  
+                  <div className="flex space-x-4">
+                    <button
+                      type="submit"
+                      className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors"
+                    >
+                      Book Now
+                    </button>
+                    <button
+                      type="button"
+                      onClick={closeServiceModal}
+                      className="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-gray-50">
@@ -252,11 +542,13 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg"
+                className={`bg-white rounded-lg overflow-hidden shadow-lg ${
+                  index === 3 && "max-w-4xl mx-auto"
+                }`}
               >
                 <div className="grid md:grid-cols-2 gap-8">
                   <img
-                    src={project.image}
+                    src={project.image || "/api/placeholder/400/320"}
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
@@ -289,7 +581,6 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* News Section */}
       <section id="news" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -305,29 +596,7 @@ const Home = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "SolarTech Expands Operations",
-                date: "February 15, 2024",
-                category: "Company News",
-                excerpt: "We're excited to announce our expansion into three new states.",
-                image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "New Solar Technology Breakthrough",
-                date: "February 10, 2024",
-                category: "Innovation",
-                excerpt: "Our research team has developed a new solar panel technology.",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                title: "Environmental Award Winner",
-                date: "February 5, 2024",
-                category: "Awards",
-                excerpt: "SolarTech receives the 2024 Green Innovation Award.",
-                image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              }
-            ].map((news, index) => (
+            {newsItems.map((news, index) => (
               <motion.article
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -336,7 +605,7 @@ const Home = () => {
                 className="bg-white rounded-lg overflow-hidden shadow-lg"
               >
                 <img
-                  src={news.image}
+                  src={news.image || "/api/placeholder/400/320"}
                   alt={news.title}
                   className="w-full h-48 object-cover"
                 />
@@ -352,7 +621,10 @@ const Home = () => {
                     {news.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{news.excerpt}</p>
-                  <button className="text-green-600 font-semibold hover:text-green-700 transition-colors">
+                  <button 
+                    className="text-green-600 font-semibold hover:text-green-700 transition-colors"
+                    onClick={() => openNewsModal(news)}
+                  >
                     Read More →
                   </button>
                 </div>
@@ -361,6 +633,58 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* News Modal */}
+      {selectedNews && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={closeNewsModal}
+        >
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-full overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative">
+              <img
+                src={selectedNews.image || "/api/placeholder/400/320"}
+                alt={selectedNews.title}
+                className="w-full h-64 object-cover"
+              />
+              <button
+                onClick={closeNewsModal}
+                className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6">
+              <div className="flex items-center mb-4">
+                <span className="text-green-600 text-sm font-semibold">
+                  {selectedNews.category}
+                </span>
+                <span className="mx-2 text-gray-400">•</span>
+                <span className="text-gray-500 text-sm">{selectedNews.date}</span>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{selectedNews.title}</h2>
+              <p className="text-gray-700 mb-6 leading-relaxed">{selectedNews.content}</p>
+              <button
+                onClick={closeNewsModal}
+                className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
@@ -534,7 +858,6 @@ const Home = () => {
             </motion.div>
           </div>
         </div>
-      
       </section>
     </div>
   );
