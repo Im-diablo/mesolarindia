@@ -185,7 +185,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/src/homepage-background.jpg')" }}>
+      <section id="home" className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/src/assets/homepage-background.jpg')" }}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div 
