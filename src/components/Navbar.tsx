@@ -105,6 +105,13 @@ const Navbar = () => {
     }, 100);
   };
 
+  const images = [
+    {
+      url: "/assets/logo.png", // Update path to point to the public directory
+      title: "Logo"
+    }
+  ];
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled && window.scrollY > window.innerHeight
@@ -123,7 +130,7 @@ const Navbar = () => {
               className="flex-shrink-0 flex items-center"
             >
               <motion.img 
-                src="./assets/logo.png"
+                src={images[0].url} // Use the URL from the images array
                 alt="ME Solar Logo" 
                 className="h-36 w-36"
                 whileHover={{ scale: 1.1 }}
