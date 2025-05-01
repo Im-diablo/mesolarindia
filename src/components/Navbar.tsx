@@ -230,7 +230,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white shadow-lg"
+            className="md:hidden bg-white/95 backdrop-blur-sm shadow-lg border-t border-primary-100"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navigation.map((item) => 
@@ -242,7 +242,7 @@ const Navbar = () => {
                         e.preventDefault();
                         scrollToSection(item.href);
                       }}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                     >
                       {item.name}
                     </a>
@@ -257,7 +257,7 @@ const Navbar = () => {
                           }}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-green-600 hover:bg-green-50 transition-colors"
+                          className="block px-3 py-2 rounded-md text-sm font-medium text-primary-700 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                         >
                           {dropdownItem.name}
                         </motion.a>
@@ -272,7 +272,7 @@ const Navbar = () => {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                   >
                     {item.name}
                   </a>
