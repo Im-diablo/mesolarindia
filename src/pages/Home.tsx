@@ -380,7 +380,7 @@ const Home = () => {
                 bio: "A postgraduate in finance with over 10 years of experience in the solar and IT sectors, driving systematic corporate management."
               },
               {
-                name: "Sadha Gupta",
+                name: "Sadhna Gupta",
                 role: "Director- Stratergy Planning",
                 image: "",
                 bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
