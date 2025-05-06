@@ -1,12 +1,13 @@
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
   const socialLinks = [
     { icon: FaFacebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' }
+    { icon: FaXTwitter, href: 'https://x.com/mesolarindia', label: 'X (Twitter)' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/me-solar-918059362/', label: 'LinkedIn' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/mesolarindia/', label: 'Instagram' }
   ];
 
   const quickLinks = [
@@ -32,7 +33,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold text-primary-400">SolarTech</h3>
+            <h3 className="text-2xl font-bold text-primary-400">ME Solar</h3>
             <p className="mt-4 text-gray-300">
               Powering a sustainable future through innovative solar solutions.
             </p>
@@ -73,25 +74,25 @@ const Footer = () => {
                 whileHover={{ x: 5 }}
                 className="hover:text-green-500 transition-colors duration-300"
               >
-                123 Solar Street
+               2/125, Vishwas Khand
               </motion.li>
               <motion.li 
                 whileHover={{ x: 5 }}
                 className="hover:text-green-500 transition-colors duration-300"
               >
-                Sunshine City, SC 12345
+                Gomti Nagar, Lucknow, U.P. (226010)
               </motion.li>
               <motion.li 
                 whileHover={{ x: 5 }}
                 className="hover:text-green-500 transition-colors duration-300"
               >
-                Phone: (555) 123-4567
+                Phone: +91 9153832222
               </motion.li>
               <motion.li 
                 whileHover={{ x: 5 }}
                 className="hover:text-green-500 transition-colors duration-300"
               >
-                Email: info@solartech.com
+                Email: info@mesolar.com
               </motion.li>
             </ul>
           </motion.div>
@@ -127,7 +128,7 @@ const Footer = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-300"
         >
-          <p>&copy; {new Date().getFullYear()} SolarTech. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ME Solar. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>

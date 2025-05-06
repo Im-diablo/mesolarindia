@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
   const servicesRef = useRef(null);
+  const contactRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,24 +33,62 @@ const Navbar = () => {
   }, []);
 
   const navigation = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Company', href: '#company' },
+    { name: 'Home', href: '/#home' },
+    { name: 'About Company', href: '/#company' },
     { 
       name: 'Services', 
-      href: '#services',
+      href: '/#services',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Solar Panel Installation', href: '#services-solar-panels' },
-        { name: 'Energy Consultation', href: '#services-consultation' },
-        { name: 'System Maintenance', href: '#services-maintenance' },
-        { name: 'Battery Storage', href: '#services-battery' }
+        { name: 'Solar EPC', href: '/#services-epc' },
+        { name: 'Engineering & Design', href: '/#services-engineering' },
+        { name: 'Installation & Commissioning', href: '/#services-installation' },
+        { name: 'Operation & Maintenance', href: '/#services-maintenance' },
+        { name: 'BOS Items', href: '/#services-bos' },
+        { name: 'Technical & Non-Technical Services', href: '/#services-technical' }
       ] 
     },
-    { name: 'Projects', href: '#projects' },
-    { name: 'NewsRoom', href: '#news' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'NewsRoom', href: '/#news' },
+    { 
+      name: 'Contact Us', 
+      href: '/#contact',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Contact Us', href: '/#contact-form' },
+        { name: 'Career with Us', href: '/career' },
+        { name: 'Partner with Us', href: '/partner' }
+      ] 
+    },
   ];
 
+  // Update the navigation function to handle both hash links and page navigation
+  const handleNavigation = (href: string) => {
+    // Close menus
+    setIsOpen(false);
+    setServicesDropdownOpen(false);
+    setContactDropdownOpen(false);
+    
+    // Check if it's a route or hash link
+    if (href.startsWith('/') && !href.includes('#')) {
+      // It's a route, use navigate
+      navigate(href);
+    } else {
+      // It's a hash link, handle scrolling
+      const hashPart = href.includes('#') ? href.substring(href.indexOf('#')) : '';
+      
+      if (href.startsWith('/') && href !== '/') {
+        // First navigate to the page, then scroll
+        navigate(href.substring(0, href.indexOf('#')));
+        setTimeout(() => scrollToSection(hashPart), 100);
+      } else {
+        // Just scroll on current page
+        scrollToSection(hashPart);
+      }
+    }
+  };
+
+  // Keep the existing scrollToSection function
   const scrollToSection = (href: string) => {
     console.log(`Attempting to navigate to section: ${href}`);
     // Close the mobile menu first
@@ -115,22 +156,22 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a 
-              href="#home"
+            <Link 
+              to="/"
+              className="flex-shrink-0 flex items-center -ml-5"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('#home');
+                handleNavigation('/#home');
               }}
-              className="flex-shrink-0 flex items-center"
             >
               <motion.img 
-                src="assets/logo.png"
+                src="/assets/logo.png"
                 alt="ME Solar Logo" 
                 className="h-36 w-36"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8}}
               />
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-6">
@@ -138,28 +179,32 @@ const Navbar = () => {
               item.hasDropdown ? (
                 <div 
                   key={item.name}
-                  ref={servicesRef}
+                  ref={item.name === 'Services' ? servicesRef : contactRef}
                   className="relative"
-                  onMouseEnter={() => setServicesDropdownOpen(true)}
-                  onMouseLeave={() => setServicesDropdownOpen(false)}
+                  onMouseEnter={() => {
+                    if (item.name === 'Services') setServicesDropdownOpen(true);
+                    if (item.name === 'Contact Us') setContactDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (item.name === 'Services') setServicesDropdownOpen(false);
+                    if (item.name === 'Contact Us') setContactDropdownOpen(false);
+                  }}
                 >
                   <a
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      scrollToSection(item.href);
+                      handleNavigation(item.href);
                     }}
-                    className={`flex items-center px py-0 rounded-md text-lg font-bold transition-colors ${
-                      'text-black hover:text-green-400'
-                    }`}
+                    className={`flex items-center px py-0 rounded-md text-lg font-bold transition-colors text-black hover:text-green-400`}
                   >
                     {item.name}
                     <ChevronDownIcon className="ml-1 h-4 w-4" />
                   </a>
                   
-                  {/* Services Dropdown */}
                   <AnimatePresence>
-                    {servicesDropdownOpen && (
+                    {((item.name === 'Services' && servicesDropdownOpen) ||
+                      (item.name === 'Contact Us' && contactDropdownOpen)) && (
                       <motion.div
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -174,7 +219,7 @@ const Navbar = () => {
                               href={dropdownItem.href}
                               onClick={(e) => {
                                 e.preventDefault();
-                                scrollToSection(dropdownItem.href);
+                                handleNavigation(dropdownItem.href);
                               }}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -189,30 +234,29 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               ) : (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.href);
+                    if (item.href.includes('#')) {
+                      e.preventDefault();
+                      handleNavigation(item.href);
+                    }
                   }}
-                  className={`relative px py-0 rounded-md text-lg font-bold transition-colors ${
-                    'text-black hover:text-green-400'
-                  }`}
+                  className={`relative px py-0 rounded-md text-lg font-bold transition-colors text-black hover:text-green-400`}
                 >
                   {item.name}
-                </a>
+                </Link>
               )
             ))}
           </div>
 
+          {/* Mobile menu button - update onClick handler */}
           <div className="flex items-center md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md ${
-                'text-black hover:text-green-400'
-              } focus:outline-none`}
+              className={`inline-flex items-center justify-center p-2 rounded-md text-black hover:text-green-400 focus:outline-none`}
             >
               {isOpen ? (
                 <XMarkIcon className="block h-6 w-6" />
@@ -224,6 +268,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Update mobile menu handlers */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -240,7 +285,7 @@ const Navbar = () => {
                       href={item.href}
                       onClick={(e) => {
                         e.preventDefault();
-                        scrollToSection(item.href);
+                        handleNavigation(item.href);
                       }}
                       className="block px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                     >
@@ -253,7 +298,7 @@ const Navbar = () => {
                           href={dropdownItem.href}
                           onClick={(e) => {
                             e.preventDefault();
-                            scrollToSection(dropdownItem.href);
+                            handleNavigation(dropdownItem.href);
                           }}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -265,17 +310,20 @@ const Navbar = () => {
                     </div>
                   </div>
                 ) : (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(item.href);
+                      if (item.href.includes('#')) {
+                        e.preventDefault();
+                        handleNavigation(item.href);
+                      }
+                      setIsOpen(false);
                     }}
                     className="block px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )
               )}
             </div>

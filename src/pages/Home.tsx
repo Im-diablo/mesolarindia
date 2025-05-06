@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaFacebook, FaXTwitter } from 'react-icons/fa6';
 
 // Define a type for news items
 interface NewsItem {
   title: string;
   date: string;
   category: string;
+  priority: string;
   excerpt: string;
   content: string;
   image: string;
@@ -22,6 +25,10 @@ interface ServiceItem {
 }
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [showAllProjects] = useState(false);
+  
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,11 +37,12 @@ const Home = () => {
     message: ''
   });
 
-  // Update state and function to use the NewsItem and ServiceItem types
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  const [showCareerModal, setShowCareerModal] = useState(false);
+  const [showPartnerModal, setShowPartnerModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
   
-  // Added state for booking form within service modal
   const [bookingData, setBookingData] = useState({
     name: '',
     email: '',
@@ -43,6 +51,7 @@ const Home = () => {
     notes: ''
   });
 
+  // Form handlers
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
@@ -55,6 +64,7 @@ const Home = () => {
     });
   };
   
+  // Booking handlers
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setBookingData({
       ...bookingData,
@@ -65,7 +75,7 @@ const Home = () => {
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Booking submitted:", bookingData);
-    // Here you would typically send the booking data to your server
+   
     alert("Your booking request has been submitted!");
     setBookingData({
       name: '',
@@ -74,23 +84,33 @@ const Home = () => {
       date: '',
       notes: ''
     });
-    setSelectedService(null); // Close the modal after submission
+    setSelectedService(null);
+    setShowBookingModal(false);
   };
 
-  // News items with full content
+  // Navigation handlers
+  const handleCareerClick = () => navigate('/career');
+  const handlePartnerClick = () => navigate('/partner');
+
+  // Modal handlers
+  const closeCareerModal = () => setShowCareerModal(false);
+  const closePartnerModal = () => setShowPartnerModal(false);
+
   const newsItems = [
     {
-      title: "SolarTech Expands Operations",
+      title: "ME Solar Expands Operations",
       date: "February 15, 2024",
       category: "Company News",
+      priority: "high",
       excerpt: "We're excited to announce our expansion into three new states.",
-      content: "SolarTech is proud to announce its expansion into three new strategic markets: Arizona, Nevada, and New Mexico. This expansion will allow us to better serve customers across the Southwest region, where solar energy potential is among the highest in the nation. Our expansion includes new installation teams, customer service centers, and partnerships with local businesses. We expect to create over 200 new jobs in these regions within the next year, further supporting the transition to renewable energy across America.",
+      content: "ME Solar is proud to announce its expansion into three new strategic markets: Arizona, Nevada, and New Mexico. This expansion will allow us to better serve customers across the Southwest region, where solar energy potential is among the highest in the nation. Our expansion includes new installation teams, customer service centers, and partnerships with local businesses. We expect to create over 200 new jobs in these regions within the next year, further supporting the transition to renewable energy across America.",
       image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "New Solar Technology Breakthrough",
       date: "February 10, 2024",
       category: "Innovation",
+      priority: "high",
       excerpt: "Our research team has developed a new solar panel technology.",
       content: "After three years of intensive research and development, our engineering team has created a revolutionary new solar panel design that increases energy efficiency by 27% while reducing manufacturing costs. The new SolarMax panels use a proprietary photovoltaic material that captures a wider spectrum of light, including lower-intensity wavelengths during cloudy conditions. This breakthrough technology will be available to residential customers starting next quarter and represents a significant step forward in making solar energy more accessible and efficient for everyone.",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -99,92 +119,133 @@ const Home = () => {
       title: "Environmental Award Winner",
       date: "February 5, 2024",
       category: "Awards",
-      excerpt: "SolarTech receives the 2024 Green Innovation Award.",
-      content: "SolarTech has been honored with the prestigious 2024 Green Innovation Award by the National Renewable Energy Council. This recognition celebrates our commitment to environmental sustainability and technological innovation in the solar industry. The award specifically highlighted our community solar projects, which have provided clean energy access to over 50,000 households in underserved communities. We're proud to be recognized for our efforts and remain dedicated to our mission of making clean energy solutions available to everyone.",
+      priority: "medium",
+      excerpt: "ME Solar receives the 2024 Green Innovation Award.",
+      content: "ME Solar has been honored with the prestigious 2024 Green Innovation Award by the National Renewable Energy Council. This recognition celebrates our commitment to environmental sustainability and technological innovation in the solar industry. The award specifically highlighted our community solar projects, which have provided clean energy access to over 50,000 households in underserved communities. We're proud to be recognized for our efforts and remain dedicated to our mission of making clean energy solutions available to everyone.",
       image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "Community Solar Initiative Launches",
+      date: "January 28, 2024",
+      category: "Community",
+      priority: "medium",
+      excerpt: "New program brings solar power to underserved neighborhoods.",
+      content: "ME Solar has launched a new community solar initiative aimed at bringing clean energy to underserved neighborhoods. The program allows residents to subscribe to a portion of a local solar array, receiving credits on their electricity bills without needing to install panels on their own homes. The first project will serve over 200 households in the Riverdale community, with plans to expand to five additional communities by year-end.",
+      image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "ME Solar Partners with Local Schools",
+      date: "January 20, 2024",
+      category: "Education",
+      priority: "low",
+      excerpt: "Educational initiative brings solar learning to classrooms.",
+      content: "ME Solar has launched a new educational partnership with the Metro School District to bring solar energy education to K-12 classrooms. The program includes curriculum materials, hands-on solar kits, and field trips to solar installations. Additionally, ME Solar will be installing demonstration solar arrays at three high schools, providing both educational opportunities and clean energy for the schools.",
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "Quarterly Financial Results Exceed Expectations",
+      date: "January 15, 2024",
+      category: "Financial",
+      priority: "low",
+      excerpt: "ME Solar reports 35% year-over-year growth in Q4.",
+      content: "ME Solar announced its fourth quarter financial results today, reporting a 35% increase in revenue compared to the same period last year. The company attributed this growth to expanding residential installations and several new commercial contracts. The board has approved a plan to reinvest profits into research and development of next-generation solar technologies.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
     }
   ];
   
   // Services with detailed content
   const services = [
     {
-      title: "Residential Solar Installation",
-      description: "Complete solar solutions for homes, including panel installation, battery storage, and smart monitoring systems.",
+      title: "Solar EPC",
+      description: "Complete end-to-end solar power plant solutions including engineering, procurement, and construction services.",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      fullDescription: "Our residential solar installation service offers a comprehensive solution for homeowners looking to reduce their carbon footprint and energy bills. We handle everything from initial assessment and design to installation and monitoring setup. Our expert team will evaluate your home's solar potential, recommend the optimal panel configuration, and install high-efficiency solar panels with minimal disruption to your daily life. We also offer integrated battery storage solutions to ensure you have power even when the sun isn't shining.",
+      fullDescription: "Our Solar EPC (Engineering, Procurement, and Construction) service provides comprehensive solutions for solar power plant development. We handle everything from initial site assessment and design to material procurement and complete construction. Our expert team ensures quality installation, timely project completion, and optimal system performance for both utility-scale and commercial solar projects.",
       benefits: [
-        "Reduce monthly energy bills by up to 70%",
-        "Increase property value",
-        "25-year warranty on all installations",
-        "Real-time energy monitoring via smartphone app",
-        "Available federal and state tax incentives"
+        "Turn-key solar power plant solutions",
+        "Expert project management",
+        "Quality assurance at every stage",
+        "Timely project completion",
+        "Post-installation support"
       ],
-      pricing: "Starting at $15,000 (before incentives)"
+      pricing: "Custom quotes based on project scope"
     },
     {
-      title: "Commercial Solar Systems",
-      description: "Large-scale solar installations for businesses, warehouses, and industrial facilities.",
+      title: "Engineering & Design",
+      description: "Specialized solar system design and engineering services for optimal performance and efficiency.",
       image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      fullDescription: "Our commercial solar solutions are designed to help businesses reduce operational costs while meeting sustainability goals. We specialize in designing and installing large-scale solar systems for commercial buildings, warehouses, manufacturing facilities, and agricultural operations. Our team works closely with your business to develop a customized solar solution that maximizes your ROI and provides long-term energy independence. We handle all aspects of the project, from permitting and design to installation and maintenance.",
+      fullDescription: "Our engineering and design services focus on creating optimized solar power systems. We utilize advanced simulation tools and expert knowledge to design systems that maximize energy yield while ensuring structural integrity and compliance with all relevant standards. Our team provides detailed technical documentation, 3D modeling, and performance projections.",
       benefits: [
-        "Significant reduction in operational expenses",
-        "Quick ROI - typically 3-7 years",
-        "Enhanced corporate sustainability profile",
-        "Protection against rising energy costs",
-        "Potential for LEED certification points"
+        "Custom system design",
+        "Advanced performance simulation",
+        "Structural engineering analysis",
+        "Technical documentation",
+        "Compliance certification"
       ],
-      pricing: "Custom quotes based on facility size and energy needs"
+      pricing: "Based on project complexity and size"
     },
     {
-      title: "Solar Maintenance",
-      description: "Regular maintenance and repair services to ensure optimal performance of your solar system.",
+      title: "Installation & Commissioning",
+      description: "Professional solar system installation and commissioning services with strict quality control.",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      fullDescription: "Maximize the efficiency and lifespan of your solar investment with our comprehensive maintenance services. Regular maintenance is essential to ensure your solar system operates at peak efficiency. Our technicians are trained to diagnose and repair all types of solar systems, regardless of who installed them. We offer scheduled maintenance packages as well as emergency repair services. Our maintenance includes panel cleaning, inspection of electrical components, performance testing, and monitoring system verification.",
+      fullDescription: "Our installation and commissioning team ensures your solar system is properly installed and fully operational. We follow industry best practices and safety standards during installation, perform comprehensive testing, and provide detailed system documentation. Our commissioning process includes performance verification and user training.",
       benefits: [
-        "Maintain optimal energy production",
-        "Early detection of potential issues",
-        "Extended system lifespan",
-        "Maintain manufacturer warranty compliance",
-        "24/7 emergency repair service available"
+        "Professional installation team",
+        "Strict quality control",
+        "Safety compliance",
+        "Performance testing",
+        "User training and documentation"
       ],
-      pricing: "Maintenance plans starting at $199/year"
+      pricing: "Calculated based on system size and complexity"
     },
     {
-      title: "Energy Storage Solutions",
-      description: "Advanced battery storage systems for continuous power supply during non-solar hours.",
+      title: "Operation & Maintenance",
+      description: "Comprehensive maintenance and monitoring services to ensure optimal system performance.",
       image: "https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      fullDescription: "Our energy storage solutions provide the missing link in solar energy independence. We offer cutting-edge battery systems that store excess energy produced during sunny periods for use during cloudy days or nighttime. Our battery solutions are scalable to meet any energy storage need, from small residential systems to large commercial applications. We partner with industry-leading manufacturers to provide reliable, safe, and long-lasting battery systems that integrate seamlessly with new or existing solar installations.",
+      fullDescription: "Keep your solar power system running at peak efficiency with our operation and maintenance services. We provide regular inspections, preventive maintenance, performance monitoring, and rapid response to any issues. Our team uses advanced monitoring systems to track system performance and identify potential problems before they affect production.",
       benefits: [
-        "Energy independence from the grid",
-        "Backup power during outages",
-        "Use stored solar energy during peak rate hours",
-        "Smart energy management via integrated app",
-        "Expandable capacity for growing energy needs"
+        "24/7 system monitoring",
+        "Preventive maintenance",
+        "Emergency repair service",
+        "Performance optimization",
+        "Regular reporting"
       ],
-      pricing: "Systems starting at $8,000 (before incentives)"
+      pricing: "Annual contracts starting from $1,999"
+    },
+    {
+      title: "BOS Items",
+      description: "Supply and installation of Balance of System components for solar power plants.",
+      image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "We provide high-quality Balance of System (BOS) components essential for solar power plant operation. Our offerings include inverters, mounting structures, cables, transformers, and switchgear. We ensure all components meet quality standards and are optimally integrated into your solar power system.",
+      benefits: [
+        "Quality-certified components",
+        "Comprehensive warranty",
+        "Technical support",
+        "Integration services",
+        "Competitive pricing"
+      ],
+      pricing: "Component-specific pricing available"
+    },
+    {
+      title: "Technical & Non-Technical Services",
+      description: "Supporting services including documentation, training, and consulting for solar projects.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      fullDescription: "We offer a range of technical and non-technical services to support your solar project. This includes feasibility studies, financial analysis, permit acquisition, documentation, staff training, and ongoing consulting. Our team helps navigate regulatory requirements and optimize project outcomes.",
+      benefits: [
+        "Project feasibility studies",
+        "Regulatory compliance support",
+        "Staff training programs",
+        "Documentation services",
+        "Ongoing consulting"
+      ],
+      pricing: "Service-specific quotes available"
     }
   ];
 
   // Functions to handle modals
-  const openNewsModal = (news: NewsItem) => {
-    setSelectedNews(news);
-  };
-
-  const closeNewsModal = () => {
-    setSelectedNews(null);
-  };
-  
-  const openServiceModal = (service: ServiceItem) => {
-    setSelectedService(service);
-  };
-  
-  const closeServiceModal = () => {
-    setSelectedService(null);
-  };
-  
-  // Add new function to handle booking modal
-  const [showBookingModal, setShowBookingModal] = useState(false);
-  
+  const openNewsModal = (news: NewsItem) => setSelectedNews(news);
+  const closeNewsModal = () => setSelectedNews(null);
+  const openServiceModal = (service: ServiceItem) => setSelectedService(service);
+  const closeServiceModal = () => setSelectedService(null);
   const openBookingModal = (service: ServiceItem) => {
     setSelectedService(service);
     setShowBookingModal(true);
@@ -192,7 +253,7 @@ const Home = () => {
   
   const closeBookingModal = () => {
     setShowBookingModal(false);
-    setSelectedService(null); // Also clear the selected service to prevent service modal from showing
+    setSelectedService(null);
   };
 
   return (
@@ -284,10 +345,10 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               className="glass-card p-8"
             >
-              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Vision</h3>
               <p className="text-gray-600">
-                To accelerate the world's transition to sustainable energy through 
-                innovative solar solutions and exceptional service.
+                To be the global leader in renewable energy solutions, creating a 
+                cleaner, brighter future for generations to come.
               </p>
             </motion.div>
 
@@ -296,10 +357,10 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               className="glass-card p-8"
             >
-              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Mission</h3>
               <p className="text-gray-600">
-                To be the global leader in renewable energy solutions, creating a 
-                cleaner, brighter future for generations to come.
+                To accelerate the world's transition to sustainable energy through 
+                innovative solar solutions and exceptional service.
               </p>
             </motion.div>
           </div>
@@ -696,96 +757,106 @@ const Home = () => {
       )}
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section id="projects" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-            
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Projects</h2>
-            <p className="text-xl text-gray-600">
-              Showcasing our commitment to renewable energy through successful implementations
+            <h2 className="section-title inline-block">Our Projects</h2>
+            <p className="text-xl text-gray-600 mt-4">
+              Successfully completed solar installations across India
             </p>
           </motion.div>
 
-          <div className="space-y-16">
-            {[
-              {
-                title: "Sunshine Valley Solar Farm",
-                location: "California, USA",
-                description: "A 50MW solar farm providing clean energy to over 10,000 homes.",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                stats: {
-                  capacity: "50MW",
-                  homes: "10,000+",
-                  co2: "45,000 tons"
-                }
-              },
-              {
-                title: "Green City Initiative",
-                location: "Texas, USA",
-                description: "Solar installation project for government buildings across the city.",
-                image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                stats: {
-                  capacity: "25MW",
-                  buildings: "50+",
-                  savings: "$2M/year"
-                }
-              },
-              {
-                title: "Desert Sun Project",
-                location: "Arizona, USA",
-                description: "Large-scale solar installation in desert conditions.",
-                image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                stats: {
-                  capacity: "75MW",
-                  area: "500 acres",
-                  impact: "60,000 homes"
-                }
-              }
-            ].map((project, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(showAllProjects ? [
+              { capacity: "600 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "300 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "100 KW", type: "Design & Engineering, I&C", location: "Arvind Hyundai, Agra", image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+            ] : [
+              { capacity: "600 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "300 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "100 KW", type: "Design & Engineering, I&C", location: "Arvind Hyundai, Agra", image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+            ]).map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={`bg-white rounded-lg overflow-hidden shadow-lg ${
-                  index === 3 && "max-w-4xl mx-auto"
-                }`}
+                transition={{ delay: index * 0.05 }}
+                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
               >
-                <div className="grid md:grid-cols-2 gap-8">
-                  <img
-                    src={project.image || "/api/placeholder/400/320"}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.location}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
-                  <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-green-600 font-medium mb-4">
-                      {project.location}
-                    </p>
-                    <p className="text-gray-600 mb-6">{project.description}</p>
-                    
-                    <div className="grid grid-cols-3 gap-4">
-                      {Object.entries(project.stats).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div className="text-2xl font-bold text-green-600">
-                            {value}
-                          </div>
-                          <div className="text-sm text-gray-500 capitalize">
-                            {key}
-                          </div>
-                        </div>
-                      ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                    <div className="p-4 text-white">
+                      <h3 className="text-xl font-bold">{project.capacity}</h3>
+                      <p className="text-sm opacity-90">{project.type}</p>
                     </div>
                   </div>
                 </div>
+                <div className="p-4 border-t border-gray-100">
+                  <p className="text-gray-600 text-sm">{project.location}</p>
+                </div>
               </motion.div>
             ))}
+          </div>
+
+          {!showAllProjects && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-center mt-8"
+            >
+            </motion.div>
+          )}
+
+          {/* Project Stats */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center"
+            >
+              <h3 className="text-4xl font-bold text-primary-800">29+</h3>
+              <p className="text-gray-600">Projects Completed</p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center"
+            >
+              <h3 className="text-4xl font-bold text-primary-800">13.5MW+</h3>
+              <p className="text-gray-600">Total Capacity</p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center"
+            >
+              <h3 className="text-4xl font-bold text-primary-800">15+</h3>
+              <p className="text-gray-600">Cities Covered</p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center"
+            >
+              <h3 className="text-4xl font-bold text-primary-800">100%</h3>
+              <p className="text-gray-600">Client Satisfaction</p>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -818,56 +889,80 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {newsItems.map((news, index) => (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                whileHover={{ 
-                  scale: 1.03, 
-                  boxShadow: "0 0 25px rgba(20, 184, 166, 0.2)"
-                }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg"
-              >
-                <div className="relative overflow-hidden h-48 group">
-                  <img
-                    src={news.image || "/api/placeholder/400/320"}
-                    alt={news.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                    <h3 className="text-xl font-semibold text-white p-4">
+          <div className="grid grid-cols-12 gap-6">
+            {newsItems.map((news, index) => {
+              // Define size classes based on priority
+              let sizeClasses = "";
+              let imageHeight = "";
+              let titleSize = "";
+              let excerptDisplay = "";
+              
+              if (news.priority === "high") {
+                sizeClasses = "col-span-12 md:col-span-6 lg:col-span-6";
+                imageHeight = "h-64";
+                titleSize = "text-2xl";
+                excerptDisplay = "block";
+              } else if (news.priority === "medium") {
+                sizeClasses = "col-span-12 md:col-span-6 lg:col-span-4";
+                imageHeight = "h-48";
+                titleSize = "text-xl";
+                excerptDisplay = "block";
+              } else { // low priority
+                sizeClasses = "col-span-6 md:col-span-4 lg:col-span-3";
+                imageHeight = "h-32";
+                titleSize = "text-lg";
+                excerptDisplay = "hidden md:block";
+              }
+              
+              return (
+                <motion.article
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.03, 
+                    boxShadow: "0 0 25px rgba(20, 184, 166, 0.2)"
+                  }}
+                  className={`bg-white rounded-lg overflow-hidden shadow-lg ${sizeClasses}`}
+                >
+                  <div className={`relative overflow-hidden ${imageHeight} group`}>
+                    <img
+                      src={news.image || "/api/placeholder/400/320"}
+                      alt={news.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute top-0 right-0 bg-primary-600 text-white text-xs font-semibold px-2.5 py-0.5 m-2 rounded">
+                      {news.category}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <h3 className={`${titleSize} font-semibold text-white p-4`}>
+                        {news.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center mb-2">
+                      <span className="text-gray-500 text-xs">{news.date}</span>
+                    </div>
+                    <h3 className={`${titleSize} font-semibold text-gray-900 mb-2 line-clamp-2`}>
                       {news.title}
                     </h3>
+                    <p className={`text-gray-600 mb-3 text-sm line-clamp-2 ${excerptDisplay}`}>{news.excerpt}</p>
+                    <motion.button 
+                      className="text-primary-600 font-semibold hover:text-primary-700 transition-colors flex items-center text-sm"
+                      onClick={() => openNewsModal(news)}
+                      whileHover={{ x: 5 }}
+                    >
+                      Read More 
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </motion.button>
                   </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-                      {news.category}
-                    </span>
-                    <span className="mx-2 text-gray-400">•</span>
-                    <span className="text-gray-500 text-sm">{news.date}</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {news.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{news.excerpt}</p>
-                  <motion.button 
-                    className="text-green-600 font-semibold hover:text-green-700 transition-colors flex items-center"
-                    onClick={() => openNewsModal(news)}
-                    whileHover={{ x: 5 }}
-                  >
-                    Read More 
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </motion.button>
-                </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
           
           <motion.div 
@@ -875,13 +970,6 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="mt-12 text-center"
           >
-            <motion.button 
-              className="bg-white text-primary-700 px-6 py-3 rounded-full border border-primary-200 hover:border-primary-400 hover:bg-primary-50 transition-all duration-300 shadow-md"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View All News
-            </motion.button>
           </motion.div>
         </div>
       </section>
@@ -939,280 +1027,244 @@ const Home = () => {
                 >
                   Close
                 </button>
-                <div className="flex space-x-3">
-                  <button className="p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                    </svg>
-                  </button>
-                  <button className="p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                    </svg>
-                  </button>
-                  <button className="p-2 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                  </button>
-                </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
       )}
 
-           {/* Contact Section */}
-           <section id="contact" className="py-20 bg-white relative overflow-hidden">
-        <motion.div 
-          className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full opacity-70"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(255,255,255,0) 70%)"
-          }}
-          animate={{
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+
+{/* Contact Section */}
+<section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="text-center mb-16"
+    >
+      <h2 className="section-title inline-block">Get In Touch</h2>
+      <p className="text-xl text-gray-600 mt-6">
+        Connect with us for solar solutions, career opportunities, or partnerships
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Contact Us */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        className="glass-card p-8"
+      >
+        <h3 className="text-2xl font-bold text-primary-800 mb-4">Contact Us</h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={handleChange}
+              value={formData.name}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              value={formData.email}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              rows={4}
+              onChange={handleChange}
+              value={formData.message}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+            />
+          </div>
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
           >
-            <h2 className="section-title inline-block">Contact Us</h2>
-            <p className="text-xl text-gray-600 mt-6">
-              Get in touch with our team for any inquiries or support
-            </p>
-          </motion.div>
+            Send Message
+          </motion.button>
+        </form>
+      </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="space-y-8"
+      {/* Career with Us */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        className="glass-card p-8"
+      >
+        <h3 className="text-2xl font-bold text-primary-800 mb-4">Career with Us</h3>
+        <div className="space-y-4">
+          <p className="text-gray-600">Join our dynamic team and be part of the renewable energy revolution. We offer exciting opportunities for growth and innovation.</p>
+          <div className="space-y-2">
+            <h4 className="font-semibold text-primary-700">Current Openings:</h4>
+            <ul className="list-disc list-inside text-gray-600">
+              <li>Solar Installation Technician</li>
+              <li>Project Manager</li>
+              <li>Sales Representative</li>
+              <li>Technical Support Specialist</li>
+            </ul>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
+            onClick={handleCareerClick}
+          >
+            View All Positions
+          </motion.button>
+        </div>
+      </motion.div>
+
+      {/* Partner with Us */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        className="glass-card p-8"
+      >
+        <h3 className="text-2xl font-bold text-primary-800 mb-4">Partner with Us</h3>
+        <div className="space-y-4">
+          <p className="text-gray-600">Explore partnership opportunities and grow your business with us. We welcome collaborations with:</p>
+          <ul className="list-disc list-inside text-gray-600">
+            <li>Solar Equipment Suppliers</li>
+            <li>Installation Contractors</li>
+            <li>Property Developers</li>
+            <li>Energy Consultants</li>
+          </ul>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
+            onClick={handlePartnerClick}
+          >
+            Become a Partner
+          </motion.button>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
+
+      {/* Career Modal */}
+      {showCareerModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClick={closeCareerModal}
+        >
+          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <motion.div 
+              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="bg-gradient-to-br from-white via-primary-50 to-white rounded-xl overflow-hidden shadow-soft p-6">
-                <h3 className="text-2xl font-bold text-primary-800 mb-6">
-                  Get in Touch
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 bg-primary-100 p-3 rounded-full">
-                      <svg className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-lg font-medium text-primary-800">Address</p>
-                      <p className="text-gray-600 mt-1">
-                        123 Solar Street<br />
-                        Sunshine City, SC 12345
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 bg-primary-100 p-3 rounded-full">
-                      <svg className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-lg font-medium text-primary-800">Phone</p>
-                      <p className="text-gray-600 mt-1">(555) 123-4567</p>
-                      <p className="text-gray-600">(555) 765-4321</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 bg-primary-100 p-3 rounded-full">
-                      <svg className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-lg font-medium text-primary-800">Email</p>
-                      <p className="text-gray-600 mt-1">info@solartech.com</p>
-                      <p className="text-gray-600">support@solartech.com</p>
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                    <h3 className="text-2xl font-bold text-primary-800 mb-4">Career Opportunities</h3>
+                    <div className="mt-4 space-y-4">
+                      <p className="text-gray-600">Join our dynamic team and be part of the renewable energy revolution.</p>
+                      <div>
+                        <h4 className="font-semibold text-primary-700 mb-2">Current Openings:</h4>
+                        <ul className="list-disc list-inside text-gray-600 space-y-2">
+                          <li>Solar Installation Technician</li>
+                          <li>Project Manager</li>
+                          <li>Sales Representative</li>
+                          <li>Technical Support Specialist</li>
+                        </ul>
+                      </div>
+                      <p className="text-gray-600">Send your resume to careers@company.com</p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div className="bg-gradient-to-br from-white via-primary-50 to-white rounded-xl overflow-hidden shadow-soft p-6">
-                <h3 className="text-2xl font-bold text-primary-800 mb-6">
-                  Business Hours
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center pb-2 border-b border-gray-200">
-                    <span className="text-gray-700 font-medium">Monday - Friday</span>
-                    <span className="text-primary-600 font-semibold">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-2 border-b border-gray-200">
-                    <span className="text-gray-700 font-medium">Saturday</span>
-                    <span className="text-primary-600 font-semibold">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700 font-medium">Sunday</span>
-                    <span className="text-primary-600 font-semibold">Closed</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex space-x-4 mt-6">
-             <a 
-    href="https://facebook.com" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-    </svg>
-  </a>
-  <a 
-    href="https://twitter.com" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-    </svg>
-  </a>
-  <a 
-    href="https://youtube.com" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-    </svg>
-  </a>
-  <a 
-    href="https://linkedin.com" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="bg-blue-800 text-white p-3 rounded-full hover:bg-blue-900 transition-colors"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
-    </svg>
-  </a>
-</div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="bg-gradient-to-br from-white via-primary-50 to-white rounded-xl overflow-hidden shadow-soft p-6"
-            >
-              <h3 className="text-2xl font-bold text-primary-800 mb-6">
-                Send Us a Message
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
-                      Subject
-                    </label>
-                    <select
-                      name="subject"
-                      id="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                      required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="quote">Request a Quote</option>
-                      <option value="support">Technical Support</option>
-                      <option value="general">General Inquiry</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                    required
-                  ></textarea>
-                </div>
-
-                <motion.button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-md hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  type="button"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={closeCareerModal}
                 >
-                  Send Message
-                </motion.button>
-              </form>
+                  Close
+                </button>
+              </div>
             </motion.div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      )}
+
+      {/* Partner Modal */}
+      {showPartnerModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClick={closePartnerModal}
+        >
+          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <motion.div 
+              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                    <h3 className="text-2xl font-bold text-primary-800 mb-4">Partnership Opportunities</h3>
+                    <div className="mt-4 space-y-4">
+                      <p className="text-gray-600">Explore partnership opportunities and grow your business with us.</p>
+                      <div>
+                        <h4 className="font-semibold text-primary-700 mb-2">We welcome collaborations with:</h4>
+                        <ul className="list-disc list-inside text-gray-600 space-y-2">
+                          <li>Solar Equipment Suppliers</li>
+                          <li>Installation Contractors</li>
+                          <li>Property Developers</li>
+                          <li>Energy Consultants</li>
+                        </ul>
+                      </div>
+                      <p className="text-gray-600">Contact us at partnerships@company.com</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  type="button"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={closePartnerModal}
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+
     </div>
   );
 };
