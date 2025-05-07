@@ -122,7 +122,7 @@ const Home = () => {
       priority: "medium",
       excerpt: "ME Solar receives the 2024 Green Innovation Award.",
       content: "ME Solar has been honored with the prestigious 2024 Green Innovation Award by the National Renewable Energy Council. This recognition celebrates our commitment to environmental sustainability and technological innovation in the solar industry. The award specifically highlighted our community solar projects, which have provided clean energy access to over 50,000 households in underserved communities. We're proud to be recognized for our efforts and remain dedicated to our mission of making clean energy solutions available to everyone.",
-      image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.pexels.com/photos/2740956/pexels-photo-2740956.jpeg"
     },
     {
       title: "Community Solar Initiative Launches",
@@ -131,7 +131,7 @@ const Home = () => {
       priority: "medium",
       excerpt: "New program brings solar power to underserved neighborhoods.",
       content: "ME Solar has launched a new community solar initiative aimed at bringing clean energy to underserved neighborhoods. The program allows residents to subscribe to a portion of a local solar array, receiving credits on their electricity bills without needing to install panels on their own homes. The first project will serve over 200 households in the Riverdale community, with plans to expand to five additional communities by year-end.",
-      image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg"
     },
     {
       title: "ME Solar Partners with Local Schools",
@@ -140,7 +140,7 @@ const Home = () => {
       priority: "low",
       excerpt: "Educational initiative brings solar learning to classrooms.",
       content: "ME Solar has launched a new educational partnership with the Metro School District to bring solar energy education to K-12 classrooms. The program includes curriculum materials, hands-on solar kits, and field trips to solar installations. Additionally, ME Solar will be installing demonstration solar arrays at three high schools, providing both educational opportunities and clean energy for the schools.",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.pexels.com/photos/9875441/pexels-photo-9875441.jpeg"
     },
     {
       title: "Quarterly Financial Results Exceed Expectations",
@@ -772,19 +772,14 @@ const Home = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {(showAllProjects ? [
-              { capacity: "600 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "300 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "100 KW", type: "Design & Engineering, I&C", location: "Arvind Hyundai, Agra", image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+
             ] : [
               { capacity: "600 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
               { capacity: "300 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
               { capacity: "100 KW", type: "Design & Engineering, I&C", location: "Arvind Hyundai, Agra", image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1497440001374-f658d8094c88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
             ]).map((project, index) => (
               <motion.div
                 key={index}
@@ -830,7 +825,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <h3 className="text-4xl font-bold text-primary-800">29+</h3>
+              <h3 className="text-4xl font-bold text-primary-800">129+</h3>
               <p className="text-gray-600">Projects Completed</p>
             </motion.div>
             <motion.div 
