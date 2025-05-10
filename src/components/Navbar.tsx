@@ -51,11 +51,10 @@ const Navbar = () => {
     { name: 'Projects', href: '/#projects' },
     { name: 'NewsRoom', href: '/#news' },
     { 
-      name: 'Contact Us', 
-      href: '/#contact',
+      name: "Let's Contact", 
+      href: '/Contact',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Contact Us', href: '/#contact' },
         { name: 'Career with Us', href: '/career' },
         { name: 'Partner with Us', href: '/enquiry' }
       ] 
@@ -183,11 +182,11 @@ const Navbar = () => {
                   className="relative"
                   onMouseEnter={() => {
                     if (item.name === 'Services') setServicesDropdownOpen(true);
-                    if (item.name === 'Contact Us') setContactDropdownOpen(true);
+                    if (item.name === "Let's Contact") setContactDropdownOpen(true);
                   }}
                   onMouseLeave={() => {
                     if (item.name === 'Services') setServicesDropdownOpen(false);
-                    if (item.name === 'Contact Us') setContactDropdownOpen(false);
+                    if (item.name === "Let's Contact") setContactDropdownOpen(false);
                   }}
                 >
                   <a
@@ -204,7 +203,7 @@ const Navbar = () => {
                   
                   <AnimatePresence>
                     {((item.name === 'Services' && servicesDropdownOpen) ||
-                      (item.name === 'Contact Us' && contactDropdownOpen)) && (
+                      (item.name === "Let's Contact" && contactDropdownOpen)) && (
                       <motion.div
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
