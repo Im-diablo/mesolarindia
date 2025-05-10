@@ -92,7 +92,7 @@ const Footer = () => {
                 whileHover={{ x: 5 }}
                 className="hover:text-green-500 transition-colors duration-300"
               >
-                Email: info@mesolar.com
+                Email: info@mesolarindia.com
               </motion.li>
             </ul>
           </motion.div>

@@ -40,12 +40,12 @@ const Navbar = () => {
       href: '/#services',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Solar EPC', href: '/#services-epc' },
-        { name: 'Engineering & Design', href: '/#services-engineering' },
-        { name: 'Installation & Commissioning', href: '/#services-installation' },
-        { name: 'Operation & Maintenance', href: '/#services-maintenance' },
-        { name: 'BOS Items', href: '/#services-bos' },
-        { name: 'Technical & Non-Technical Services', href: '/#services-technical' }
+        { name: 'Solar EPC', href: '/#services' },
+        { name: 'Engineering & Design', href: '/#services' },
+        { name: 'Installation & Commissioning', href: '/#services' },
+        { name: 'Operation & Maintenance', href: '/#services' },
+        { name: 'BOS Items', href: '/#services' },
+        { name: 'Technical & Non-Technical Services', href: '/#services' }
       ] 
     },
     { name: 'Projects', href: '/#projects' },
@@ -55,9 +55,9 @@ const Navbar = () => {
       href: '/#contact',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Contact Us', href: '/#contact-form' },
+        { name: 'Contact Us', href: '/#contact' },
         { name: 'Career with Us', href: '/career' },
-        { name: 'Partner with Us', href: '/partner' }
+        { name: 'Partner with Us', href: '/enquiry' }
       ] 
     },
   ];

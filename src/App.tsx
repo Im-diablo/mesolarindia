@@ -3,7 +3,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Career from './pages/Career';
-import Partner from './pages/Partner';
+import Enquiry from './pages/Enquiry';
+
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/career" element={<Career />} />
-          <Route path="/partner" element={<Partner />} />
+          <Route path="/enquiry" element={<Enquiry />} />
         </Routes>
       </main>
       <Footer />

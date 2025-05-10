@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaFacebook, FaXTwitter } from 'react-icons/fa6';
+
 
 // Define a type for news items
 interface NewsItem {
@@ -90,7 +90,7 @@ const Home = () => {
 
   // Navigation handlers
   const handleCareerClick = () => navigate('/career');
-  const handlePartnerClick = () => navigate('/partner');
+  const handlePartnerClick = () => navigate('/enquiry');
 
   // Modal handlers
   const closeCareerModal = () => setShowCareerModal(false);
@@ -257,7 +257,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative"> {/* Added relative positioning */}
       {/* Hero Section */}
       <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("/assets/background.jpg")' }}>
         <motion.div 
@@ -1029,7 +1029,16 @@ const Home = () => {
       )}
 
 
-{/* Contact Section */}
+{/* Chat Bubble */}
+      <motion.div
+        className="fixed bottom-6 right-6 z-50"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
+      >
+      </motion.div>
+
+      {/* Contact Section */}
 <section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
