@@ -12,8 +12,7 @@ interface EnquiryFormData {
   hasSolarExperience: 'Yes' | 'No';
   sellProposal: string;
   companyName: string;
-  businessType: string[];
-  otherBusiness: string;
+  profession: string; 
   agencyCompanyName: string;
   timeframe: 'Within 1 WEEK' | 'Within 1 MONTH' | 'Next 3 MONTHS' | 'No Solid time frame, just ENQUIRING';
   remarks: string;
@@ -30,8 +29,8 @@ const initialFormData: EnquiryFormData = {
   hasSolarExperience: 'No',
   sellProposal: '',
   companyName: '',
-  businessType: [],
-  otherBusiness: '',
+  profession: '', 
+ 
   agencyCompanyName: '',
   timeframe: 'Within 1 WEEK',
   remarks: ''
@@ -97,7 +96,7 @@ const Enquiry = () => {
         formDataToSend.append("address", `${formData.address}, ${formData.city}, ${formData.state}`);
         formDataToSend.append("hasSolarExperience", formData.hasSolarExperience);
         formDataToSend.append("sellProposal", formData.sellProposal);
-        formDataToSend.append("businessType", formData.businessType.join(', '));
+        formDataToSend.append("profession", formData.profession); // This line is already correct
         formDataToSend.append("timeframe", formData.timeframe);
         formDataToSend.append("remarks", formData.remarks);
         
@@ -175,17 +174,7 @@ const Enquiry = () => {
         [name]: undefined
       }));
     }
-  };
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      businessType: checked 
-        ? Array.from(new Set([...prev.businessType, value]))
-        : prev.businessType.filter(type => type !== value)
-    }));
-  };
+  }; 
 
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -405,7 +394,22 @@ const Enquiry = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Do you have Experience in Solar? *</label>
+              <label htmlFor="profession" className="block text-sm font-medium text-gray-700 mb-1">
+                Profession
+              </label>
+              <input
+                type="text"
+                id="profession"
+                name="profession"
+                value={formData.profession}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                placeholder="Enter your profession"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Do you have solar experience? *</label>
               <div className="flex space-x-4">
                 <label className="inline-flex items-center">
                   <input
@@ -451,56 +455,8 @@ const Enquiry = () => {
                 )}
               </div>
             )}
+            
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Describe Your Business</label>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <label className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="businessType"
-                    value="EPC Company / Installer"
-                    checked={formData.businessType.includes("EPC Company / Installer")}
-                    onChange={handleCheckboxChange}
-                    className="form-checkbox h-4 w-4 text-primary-600"
-                  />
-                  <span className="ml-2">EPC Company / Installer</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="businessType"
-                    value="Manufacturer"
-                    checked={formData.businessType.includes('Manufacturer')}
-                    onChange={handleCheckboxChange}
-                    className="form-checkbox h-4 w-4 text-primary-600"
-                  />
-                  <span className="ml-2">Manufacturer</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="businessType"
-                    value="Trader/ Distributor"
-                    checked={formData.businessType.includes('Trader/ Distributor')}
-                    onChange={handleCheckboxChange}
-                    className="form-checkbox h-4 w-4 text-primary-600"
-                  />
-                  <span className="ml-2">Trader/ Distributor</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="businessType"
-                    value="Govt. Projects"
-                    checked={formData.businessType.includes('Govt. Projects')}
-                    onChange={handleCheckboxChange}
-                    className="form-checkbox h-4 w-4 text-primary-600"
-                  />
-                  <span className="ml-2">Govt. Projects</span>
-                </label>
-              </div>
-            </div>
-                      <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">When do you plan to finalize your partnership with us? *</label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <label className="inline-flex items-center">

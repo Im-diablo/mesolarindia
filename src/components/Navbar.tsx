@@ -55,6 +55,7 @@ const Navbar = () => {
       href: '/Contact',
       hasDropdown: true,
       dropdownItems: [
+        { name: 'Contact Us', href: '/contact' },
         { name: 'Career with Us', href: '/career' },
         { name: 'Partner with Us', href: '/enquiry' }
       ] 
