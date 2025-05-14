@@ -89,6 +89,7 @@ const Home = () => {
   };
 
   // Navigation handlers
+  const handleContactClick = () => navigate('/contact');
   const handleCareerClick = () => navigate('/career');
   const handlePartnerClick = () => navigate('/enquiry');
 
@@ -1053,57 +1054,46 @@ const Home = () => {
     </motion.div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {/* Contact Us */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        className="glass-card p-8"
-      >
-        <h3 className="text-2xl font-bold text-primary-800 mb-4">Contact Us</h3>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onChange={handleChange}
-              value={formData.name}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleChange}
-              value={formData.email}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              rows={4}
-              onChange={handleChange}
-              value={formData.message}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            />
-          </div>
+
+
+{/* Contact Us */}
+      
+<motion.div
+  initial={{ opacity: 0, x: -20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  className="glass-card p-8"
+>
+  <h3 className="text-2xl font-bold text-primary-800 mb-4">Contact Us</h3>
+  <div className="space-y-4 text-gray-600">
+    <p>We’d love to hear from you! Reach out to us via the details below, and we’ll get back to you as soon as possible.</p>
+    
+    <div className="space-y-2">
+      <div>
+        <h4 className="font-semibold text-primary-700">Email:</h4>
+        <p>info@yourcompany.com</p>
+      </div>
+      <div>
+        <h4 className="font-semibold text-primary-700">Phone:</h4>
+        <p>+1 (123) 456-7890</p>
+      </div>
+      <div>
+        <h4 className="font-semibold text-primary-700">Address:</h4>
+        <p>123 Solar Way, Green City, CA 90210</p>
+      
           <motion.button
-            type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
+            onClick={handleContactClick}
           >
-            Send Message
+            Contact Now 
           </motion.button>
-        </form>
-      </motion.div>
+        
+      </div>
+    </div>
+  </div>
+</motion.div>
+
 
       {/* Career with Us */}
       <motion.div

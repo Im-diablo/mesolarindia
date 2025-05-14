@@ -69,7 +69,7 @@ const Navbar = () => {
     },
     { 
       name: "Let's Contact", 
-      href: '/Contact',
+      href: '/#contact',
       hasDropdown: true,
       dropdownItems: [
         { name: 'Contact Us', href: '/contact' },
