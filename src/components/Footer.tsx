@@ -26,15 +26,15 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-primary-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"> {/* Reduced py-12 to py-6 */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6"> {/* Reduced gap-8 to gap-6 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold text-primary-400">ME Solar</h3>
-            <p className="mt-4 text-gray-300">
+            <p className="mt-2 text-gray-300"> {/* Reduced mt-4 to mt-2 */}
               Powering a sustainable future through innovative solar solutions.
             </p>
           </motion.div>
@@ -126,7 +126,7 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-300"
+          className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-300" // Reduced mt-8 pt-8 to mt-6 pt-6
         >
           <p>&copy; {new Date().getFullYear()} ME Solar. All rights reserved.</p>
         </motion.div>

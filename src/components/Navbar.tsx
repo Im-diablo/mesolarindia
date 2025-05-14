@@ -9,8 +9,10 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
+  const [newsDropdownOpen, setNewsDropdownOpen] = useState(false);
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
+  const newsRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,12 @@ const Navbar = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !(servicesRef.current as HTMLElement).contains(event.target as Node)) {
         setServicesDropdownOpen(false);
+      }
+      if (contactRef.current && !(contactRef.current as HTMLElement).contains(event.target as Node)) {
+        setContactDropdownOpen(false);
+      }
+      if (newsRef.current && !(newsRef.current as HTMLElement).contains(event.target as Node)) {
+        setNewsDropdownOpen(false);
       }
     };
 
@@ -49,7 +57,16 @@ const Navbar = () => {
       ] 
     },
     { name: 'Projects', href: '/#projects' },
-    { name: 'NewsRoom', href: '/#news' },
+    { 
+      name: 'NewsRoom', 
+      href: '/#news',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Media', href: '/media' },
+        { name: 'Events', href: '/events' },
+        { name: 'Blogs', href: '/blogs' }
+      ] 
+    },
     { 
       name: "Let's Contact", 
       href: '/Contact',
@@ -179,14 +196,16 @@ const Navbar = () => {
               item.hasDropdown ? (
                 <div 
                   key={item.name}
-                  ref={item.name === 'Services' ? servicesRef : contactRef}
+                  ref={item.name === 'Services' ? servicesRef : item.name === 'NewsRoom' ? newsRef : contactRef}
                   className="relative"
                   onMouseEnter={() => {
                     if (item.name === 'Services') setServicesDropdownOpen(true);
+                    if (item.name === 'NewsRoom') setNewsDropdownOpen(true);
                     if (item.name === "Let's Contact") setContactDropdownOpen(true);
                   }}
                   onMouseLeave={() => {
                     if (item.name === 'Services') setServicesDropdownOpen(false);
+                    if (item.name === 'NewsRoom') setNewsDropdownOpen(false);
                     if (item.name === "Let's Contact") setContactDropdownOpen(false);
                   }}
                 >
@@ -204,6 +223,7 @@ const Navbar = () => {
                   
                   <AnimatePresence>
                     {((item.name === 'Services' && servicesDropdownOpen) ||
+                      (item.name === 'NewsRoom' && newsDropdownOpen) ||
                       (item.name === "Let's Contact" && contactDropdownOpen)) && (
                       <motion.div
                         initial={{ opacity: 0, y: -5 }}
