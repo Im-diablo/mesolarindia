@@ -56,7 +56,7 @@ const Navbar = () => {
         { name: 'Technical & Non-Technical Services', href: '/#services' }
       ] 
     },
-    { name: 'Projects', href: '/#projects' },
+    { name: 'Projects', href: '/projects' },
     { 
       name: 'NewsRoom', 
       href: '/#news',
@@ -79,46 +79,45 @@ const Navbar = () => {
     },
   ];
 
-  // Update the navigation function to handle both hash links and page navigation
+ 
   const handleNavigation = (href: string) => {
-    // Close menus
     setIsOpen(false);
     setServicesDropdownOpen(false);
     setContactDropdownOpen(false);
     
-    // Check if it's a route or hash link
+    
     if (href.startsWith('/') && !href.includes('#')) {
-      // It's a route, use navigate
+     
       navigate(href);
+      window.scrollTo(0, 0);
     } else {
-      // It's a hash link, handle scrolling
+     
       const hashPart = href.includes('#') ? href.substring(href.indexOf('#')) : '';
       
       if (href.startsWith('/') && href !== '/') {
-        // First navigate to the page, then scroll
+        
         navigate(href.substring(0, href.indexOf('#')));
         setTimeout(() => scrollToSection(hashPart), 100);
       } else {
-        // Just scroll on current page
         scrollToSection(hashPart);
       }
     }
   };
 
-  // Keep the existing scrollToSection function
+ 
   const scrollToSection = (href: string) => {
     console.log(`Attempting to navigate to section: ${href}`);
-    // Close the mobile menu first
+    
     setIsOpen(false);
-    // Also close the services dropdown
+    
     setServicesDropdownOpen(false);
     
-    // Check if it's a service-specific link
+   
     const isServiceLink = href.startsWith('#services-');
     
     // Add a small delay to ensure UI updates before scrolling
     setTimeout(() => {
-      // For service links, first navigate to the services section and then to the specific service
+     
       if (isServiceLink) {
         // First scroll to the main services section
         const servicesSection = document.querySelector('#services');
@@ -135,7 +134,7 @@ const Navbar = () => {
           setTimeout(() => {
             const serviceElement = document.querySelector(href);
             if (serviceElement) {
-              const serviceTop = serviceElement.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; // Extra offset for sub-sections
+              const serviceTop = serviceElement.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; 
               window.scrollTo({
                 top: serviceTop,
                 behavior: 'smooth'

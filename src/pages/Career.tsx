@@ -212,38 +212,8 @@ const Career = () => {
       </motion.div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Image Gallery Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-blue-800 mb-8 text-center relative inline-block">
-            <span className="relative z-10">Our Work Environment</span>
-            <span className="absolute bottom-0 left-0 w-full h-3 bg-blue-200/50 -z-10 transform -rotate-1"></span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="overflow-hidden rounded-xl shadow-lg h-64"
-            >
-              <img src="/assets/img1.png" alt="Solar Installation" className="w-full h-full object-cover" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="overflow-hidden rounded-xl shadow-lg h-64 md:h-80"
-            >
-              <img src="/assets/img2.jpg" alt="Team Collaboration" className="w-full h-full object-cover" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="overflow-hidden rounded-xl shadow-lg h-64"
-            >
-              <img src="/assets/background.jpg" alt="Solar Panels" className="w-full h-full object-cover" />
-            </motion.div>
-          </div>
-        </motion.div>
-
+        {/* Remove the Image Gallery Section */}
+        
         {/* Company Information Sections - Side by Side */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* Building a Future Section */}
@@ -322,6 +292,7 @@ const Career = () => {
           </div>
         </motion.div>
 
+        {/* Jobs Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -350,29 +321,13 @@ const Career = () => {
               />
             ))}
           </div>
-          
-          <div className="space-y-4">
-            {internshipOpenings.map((intern, index) => (
-              <BriefCard 
-                key={index} 
-                position={intern} 
-                isInternship={true} 
-                open={openInternIndex === index}
-                onClick={() => {
-                  // Close job cards when opening an internship card
-                  setOpenJobIndex(null);
-                  // Toggle the current internship card
-                  setOpenInternIndex(openInternIndex === index ? null : index);
-                }}
-              />
-            ))}
-          </div>
         </motion.div>
         
         {/* Internship Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          className="mb-16"
         >
           <div className="mb-6 text-center">
             <h2 className="text-3xl font-bold text-blue-800 mb-3 relative inline-block">
@@ -388,7 +343,12 @@ const Career = () => {
                 position={intern} 
                 isInternship={true} 
                 open={openInternIndex === index}
-                onClick={() => setOpenInternIndex(openInternIndex === index ? null : index)}
+                onClick={() => {
+                  // Close job cards when opening an internship card
+                  setOpenJobIndex(null);
+                  // Toggle the current internship card
+                  setOpenInternIndex(openInternIndex === index ? null : index);
+                }}
               />
             ))}
           </div>

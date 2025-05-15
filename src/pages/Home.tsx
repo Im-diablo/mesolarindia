@@ -887,7 +887,6 @@ const Home = () => {
 
           <div className="grid grid-cols-12 gap-6">
             {newsItems.map((news, index) => {
-              // Define size classes based on priority
               let sizeClasses = "";
               let imageHeight = "";
               let titleSize = "";
@@ -1057,7 +1056,6 @@ const Home = () => {
 
 
 {/* Contact Us */}
-      
 <motion.div
   initial={{ opacity: 0, x: -20 }}
   whileInView={{ opacity: 1, x: 0 }}
