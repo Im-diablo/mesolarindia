@@ -199,7 +199,7 @@ const Career = () => {
         className="relative w-full left-0 right-0 mb-12 h-96 flex items-center justify-center overflow-hidden"
       >
         <img
-          src="/assets/img1.png"
+          src="/assets/careeropp.jpeg"
           alt="Career Opportunities"
           className="w-full h-full object-cover absolute inset-0 z-0 filter brightness-90"
         />
@@ -234,7 +234,7 @@ const Career = () => {
                 Whether you're an experienced professional or a passionate newcomer, you'll have the opportunity to develop your skills, work on cutting-edge projects, and contribute to a more sustainable world.
               </p>
               <div className="mt-6 overflow-hidden rounded-lg shadow-md">
-                <img src="/assets/background.jpg" alt="Solar Installation" className="w-full h-48 object-cover" />
+                <img src="/assets/Future.png" alt="Solar Installation" className="w-full h-48 object-cover" />
               </div>
             </div>
           </motion.div>
@@ -259,7 +259,7 @@ const Career = () => {
                     We value teamwork, integrity, and continuous learning. Our mission is to create a culture of sustainability both in and outside the workplace. Join us, and be a part of our journey towards a greener future.
                   </p>
                   <div className="mt-4 mb-6 overflow-hidden rounded-lg shadow-md">
-                    <img src="/assets/img2.jpg" alt="Team Collaboration" className="w-full h-48 object-cover" />
+                    <img src="/assets/C&V.jpeg" alt="Team Collaboration" className="w-full h-48 object-cover" />
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-auto">
@@ -267,7 +267,7 @@ const Career = () => {
                     <p className="text-blue-700 text-base font-medium italic">"Driven by Integrity and Innovation"</p>
                   </div>
                   <div className="ml-4 flex-shrink-0">
-                    <img src="/assets/img2.jpg" alt="Great Place to Work" className="h-20 w-auto rounded-lg shadow-md" />
+                    <img src="/assets/CV2.png" alt="Great Place to Work" className="h-20 w-auto rounded-lg shadow-md" />
                   </div>
                 </div>
               </div>
@@ -282,7 +282,7 @@ const Career = () => {
           className="mb-16 overflow-hidden rounded-xl shadow-xl"
         >
           <img 
-            src="/assets/img1.png" 
+            src="/assets/team.png" 
             alt="Solar Energy Team" 
             className="w-full h-96 object-cover"
           />

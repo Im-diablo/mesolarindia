@@ -230,7 +230,7 @@ const Home = () => {
   return (
     <div className="min-h-screen relative"> 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXdpN3BvOGVhZzF3YTlzaXI2Z28xb2xucXVpenRnc2hhNXVzMW0yeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vf9VTiNQJXNLbFL3QL/giphy.gif")' }}>
+      <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("/assets/background.gif")' }}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-black/60 to-primary-900/40 backdrop-blur-xs"
           animate={{
