@@ -4,7 +4,7 @@ import { HiOutlineBriefcase, HiOutlineAcademicCap, HiOutlineLocationMarker, HiOu
 
 const jobOpenings = [
   {
-    title: "Sales Executive – Residential",
+    title: "Sales Executive",
     description: "Join our sales team to help residential customers transition to solar energy.",
     overview: "Promote and sell solar solutions to residential customers in assigned territories.",
     location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
@@ -35,7 +35,7 @@ const jobOpenings = [
     title: "Solar Technician",
     description: "Looking for experienced technicians to join our installation team.",
     overview: "Install, maintain, and repair solar panel systems for residential and commercial clients.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Experience in solar installation",
       "Technical knowledge of electrical systems",
@@ -49,7 +49,7 @@ const jobOpenings = [
     title: "Solar Engineer – Services",
     description: "Provide engineering expertise for solar installation projects.",
     overview: "Design, plan, and oversee solar system installations, ensuring technical compliance and optimal performance.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Degree in Electrical/Mechanical Engineering",
       "Experience with solar PV systems",
@@ -63,7 +63,7 @@ const jobOpenings = [
     title: "Liasoning Executive",
     description: "Manage relationships with government agencies and regulatory bodies.",
     overview: "Handle permits, approvals, and compliance requirements for solar projects with various authorities.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Experience in government relations",
       "Knowledge of renewable energy regulations",
@@ -77,7 +77,7 @@ const jobOpenings = [
     title: "Loan Process Executive",
     description: "Facilitate financing options for customers investing in solar solutions.",
     overview: "Guide customers through solar financing options, loan applications, and documentation processes.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Experience in finance or banking",
       "Knowledge of loan processing",
@@ -91,7 +91,7 @@ const jobOpenings = [
     title: "Office Assistant",
     description: "Provide administrative support to ensure smooth office operations.",
     overview: "Handle administrative tasks, coordinate schedules, manage documentation, and support office staff.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Administrative experience",
       "Proficiency in MS Office",
@@ -105,7 +105,7 @@ const jobOpenings = [
     title: "HR Assistant",
     description: "Support HR functions including recruitment, onboarding, and employee relations.",
     overview: "Assist with recruitment processes, employee documentation, and general HR administrative tasks.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "HR background or education",
       "Knowledge of HR practices",
@@ -119,7 +119,7 @@ const jobOpenings = [
     title: "Account Executive",
     description: "Manage financial operations and accounting processes.",
     overview: "Handle accounts payable/receivable, financial reporting, and maintain accounting records.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Accounting qualification",
       "Experience in financial management",
@@ -133,7 +133,7 @@ const jobOpenings = [
     title: "Digital Marketing Executive",
     description: "Drive online presence and lead generation through digital marketing strategies.",
     overview: "Manage social media, content creation, SEO, and digital campaigns to promote solar solutions.",
-    location: "Lucknow, Hardoi, Unnao, Lakhimpur, Raibareli, Sitapur, Gaziabad",
+    location: "Lucknow",
     requirements: [
       "Digital marketing experience",
       "Social media management skills",
@@ -150,13 +150,12 @@ const internshipOpenings = [
     title: "Marketing Intern",
     description: "Assist our marketing team with campaigns and outreach.",
     overview: "Work with the marketing team to plan and execute campaigns, manage social media, and analyze outreach effectiveness.",
-    location: "Remote / Mumbai, India",
+    location: "All over Uttar Pradesh",
     requirements: [
-      "Currently pursuing a degree in Marketing or related field",
       "Strong communication skills",
       "Familiarity with social media platforms"
     ],
-    stipend: "₹8,000/month",
+    stipend: "",
     applyLink: "mailto:careers@company.com?subject=Application%20for%20Marketing%20Intern"
   },
   {
@@ -165,13 +164,25 @@ const internshipOpenings = [
     overview: "Gain hands-on experience in solar project design and technical analysis.",
     location: "Hyderabad, India",
     requirements: [
-      "Currently pursuing a degree in Engineering",
+      "Currently pursuing a degree in MBA or BBA or equivalent",
       "Interest in renewable energy",
-      "Basic knowledge of CAD tools"
     ],
-    stipend: "₹10,000/month",
+    stipend: "",
     applyLink: "mailto:careers@company.com?subject=Application%20for%20Engineering%20Intern"
-  }
+  },
+  {
+    title: "Social Media Marketing Intern",
+    description: "Support our marketing team in creating and managing social media content to boost brand engagement.",
+    overview: "Collaborate with the marketing team to develop social media strategies, create engaging content, monitor analytics, and enhance online presence across platforms.",
+    location: "Remote",
+    requirements: [
+      "Immediate joiners are preferred",
+      "Only 2024 and 2025 passing out batch are preferred",
+      "Knowledge of social media platforms",
+    ],
+    stipend: "",
+    applyLink: "mailto:careers@company.com?subject=Application%20for%20Social%20Media%20Marketing%20Intern"
+}
 ];
 
 // Define a type for job/internship positions

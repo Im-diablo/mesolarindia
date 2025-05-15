@@ -23,7 +23,8 @@ interface ServiceItem {
 }
 
 const Home = () => {
-  const [] = useState({
+  // Fixed contact form state
+  const [contactData, setContactData] = useState({
     name: '',
     email: '',
     phone: '',
@@ -54,7 +55,6 @@ const Home = () => {
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Booking submitted:", bookingData);
-   
     alert("Your booking request has been submitted!");
     setBookingData({
       name: '',
@@ -131,6 +131,7 @@ const Home = () => {
       description: "Complete end-to-end solar power plant solutions including engineering, procurement, and construction services.",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       fullDescription: "Our Solar EPC (Engineering, Procurement, and Construction) service provides comprehensive solutions for solar power plant development. We handle everything from initial site assessment and design to material procurement and complete construction. Our expert team ensures quality installation, timely project completion, and optimal system performance for both utility-scale and commercial solar projects.",
+
       benefits: [
         "Turn-key solar power plant solutions",
         "Expert project management",
@@ -230,84 +231,45 @@ const Home = () => {
   return (
     <div className="min-h-screen relative"> 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("/assets/background.gif")' }}>
-        <motion.div 
+      <section
+        id="home"
+        className="relative h-screen bg-cover bg-center overflow-hidden max-w-full"
+        style={{ backgroundImage: 'url("/assets/background.gif")' }}
+      >
+        <motion.div
           className="absolute inset-0 bg-gradient-to-br from-black/60 to-primary-900/40 backdrop-blur-xs"
           animate={{
-            scale: [1, 1.05, 1],
+            scale: [1, 1.02, 1],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            repeatType: "reverse"
+            repeatType: "reverse",
           }}
+          style={{ transformOrigin: "center" }}
         />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <motion.div 
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center w-full">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white"
+            className="text-white w-full"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Powering Tomorrow with <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-accent-400">Solar Innovation</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              Powering Tomorrow with{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-accent-400">
+                Solar Innovation
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl text-gray-100">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl text-gray-100">
               Leading the way in sustainable energy solutions for a brighter, cleaner future.
             </p>
-            {/* <div className="flex gap-4">
-            <motion.a
-            href="/projects"
-           className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          >
-          Explore More
-          </motion.a>
-          <motion.a
-            href="/contact"
-            className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            >
-            Contact Us
-          </motion.a>
-        </div> */}
           </motion.div>
         </div>
       </section>
 
       {/* Company Section */}
       <section id="company" className="py-20 bg-white relative overflow-hidden">
-        <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-70"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(255,255,255,0) 70%)"
-          }}
-          animate={{
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-        
-        <motion.div 
-          className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full opacity-70"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(255,255,255,0) 70%)"
-          }}
-          animate={{
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -355,23 +317,42 @@ const Home = () => {
                 bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
               },
               {
-                name: "Sunil Sagar",
-                role: "Founder , Director & Chief Executive Officer (CEO)",
-                image: "",
-                bio: "A postgraduate in finance with over 10 years of experience in the solar and IT sectors, driving systematic corporate management."
+                "name": "Sunil Sagar",
+                "role": "Founder, Director & Chief Executive Officer (CEO)",
+                "image": "",
+                "bio": "Sunil Sagar is the Founder, Director, and Chief Executive Officer (CEO) of the company. With a postgraduate degree in finance and over a decade of professional experience across the solar energy and IT sectors, he brings a unique blend of technical insight and strategic leadership. Sunil is known for his commitment to systematic corporate governance, operational excellence, and sustainable innovation. Under his leadership, the organization has consistently delivered impactful solutions and achieved measurable growth.",
+                "education": [
+                  "Postgraduate Degree in Finance"
+                ],
+                "experience": "10+ years in solar energy and information technology industries",
+                "expertise": [
+                  "Strategic Leadership",
+                  "Corporate Governance",
+                  "Financial Planning",
+                  "Business Development",
+                  "Sustainable Innovation"
+                ],
+                "achievements": [
+                  "Led company expansion into new markets",
+                  "Developed strategic partnerships with key stakeholders",
+                  "Implemented scalable business operations"
+                ],
+                "location": "India",
+                "linkedin": "https://www.linkedin.com/in/sunilsagar",  // Replace with actual URL if available
+                "email": "sunil.sagar@example.com",
               },
-              {
-                name: "Sadhna Gupta",
-                role: "Director- Stratergy Planning",
-                image: "",
-                bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
-              },
-              {
-                name: "Reena Gupta",
-                role: "Director - Business & Planning",
-                image: "",
-                bio: "A business professional since 2015, with expertise in practical strategy, collaboration, and growth, fostering a creative and people-focused approach."
-              },
+              // {
+              //   name: "Sadhna Gupta",
+              //   role: "Director- Stratergy Planning",
+              //   image: "",
+              //   bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
+              // },
+              // {
+              //   name: "Reena Gupta",
+              //   role: "Director - Business & Planning",
+              //   image: "",
+              //   bio: "A business professional since 2015, with expertise in practical strategy, collaboration, and growth, fostering a creative and people-focused approach."
+              // },
             ].map((member, index) => (
               <motion.div
                 key={index}
@@ -739,20 +720,6 @@ const Home = () => {
 
       {/* News Section */}
       <section id="news" className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-70"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(255,255,255,0) 70%)"
-          }}
-          animate={{
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
