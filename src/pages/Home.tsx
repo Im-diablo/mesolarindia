@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 
 // Define a type for news items
 interface NewsItem {
@@ -25,11 +23,7 @@ interface ServiceItem {
 }
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [showAllProjects] = useState(false);
-  
-  
-  const [formData, setFormData] = useState({
+  const [] = useState({
     name: '',
     email: '',
     phone: '',
@@ -39,8 +33,6 @@ const Home = () => {
 
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
-  const [showCareerModal, setShowCareerModal] = useState(false);
-  const [showPartnerModal, setShowPartnerModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
   
   const [bookingData, setBookingData] = useState({
@@ -50,19 +42,6 @@ const Home = () => {
     date: '',
     notes: ''
   });
-
-  // Form handlers
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
   
   // Booking handlers
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -87,15 +66,6 @@ const Home = () => {
     setSelectedService(null);
     setShowBookingModal(false);
   };
-
-  // Navigation handlers
-  const handleContactClick = () => navigate('/contact');
-  const handleCareerClick = () => navigate('/career');
-  const handlePartnerClick = () => navigate('/enquiry');
-
-  // Modal handlers
-  const closeCareerModal = () => setShowCareerModal(false);
-  const closePartnerModal = () => setShowPartnerModal(false);
 
   const newsItems = [
     {
@@ -258,9 +228,9 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen relative"> {/* Added relative positioning */}
+    <div className="min-h-screen relative"> 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("/assets/background.jpg")' }}>
+      <section id="home" className="relative h-screen bg-cover bg-center overflow-hidden" style={{ backgroundImage: 'url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXdpN3BvOGVhZzF3YTlzaXI2Z28xb2xucXVpenRnc2hhNXVzMW0yeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vf9VTiNQJXNLbFL3QL/giphy.gif")' }}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-black/60 to-primary-900/40 backdrop-blur-xs"
           animate={{
@@ -285,14 +255,24 @@ const Home = () => {
             <p className="text-xl md:text-2xl mb-8 max-w-2xl text-gray-100">
               Leading the way in sustainable energy solutions for a brighter, cleaner future.
             </p>
-            <motion.a 
-              href="#contact" 
-              className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get In Touch
-            </motion.a>
+            <div className="flex gap-4">
+            <motion.a
+            href="/projects"
+           className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          >
+          Explore More
+          </motion.a>
+          <motion.a
+            href="/contact"
+            className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact Us
+          </motion.a>
+        </div>
           </motion.div>
         </div>
       </section>
@@ -757,108 +737,8 @@ const Home = () => {
         </motion.div>
       )}
 
-      {/* Projects Section */}
-      <section id="projects" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
-          >
-            <h2 className="section-title inline-block">Our Projects</h2>
-            <p className="text-xl text-gray-600 mt-4">
-              Successfully completed solar installations across India
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {(showAllProjects ? [
-
-            ] : [
-              { capacity: "600 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "300 KW", type: "Design & Engineering", location: "Delhi-Mumbai Highway, Sohna, Haryana", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "100 KW", type: "Design & Engineering, I&C", location: "Arvind Hyundai, Agra", image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "35 KW", type: "Design & Engineering, I&C", location: "Sunrise Hospital, Aligarh", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "30KW", type: "Design & Engineering", location: "Bhargava Diagnostic, Aligarh", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-              { capacity: "250KW", type: "I&C", location: "Eurogrip Footware, Agra", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
-            ]).map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.location}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                    <div className="p-4 text-white">
-                      <h3 className="text-xl font-bold">{project.capacity}</h3>
-                      <p className="text-sm opacity-90">{project.type}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 border-t border-gray-100">
-                  <p className="text-gray-600 text-sm">{project.location}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {!showAllProjects && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-center mt-8"
-            >
-            </motion.div>
-          )}
-
-          {/* Project Stats */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center"
-            >
-              <h3 className="text-4xl font-bold text-primary-800">129+</h3>
-              <p className="text-gray-600">Projects Completed</p>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center"
-            >
-              <h3 className="text-4xl font-bold text-primary-800">13.5MW+</h3>
-              <p className="text-gray-600">Total Capacity</p>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center"
-            >
-              <h3 className="text-4xl font-bold text-primary-800">15+</h3>
-              <p className="text-gray-600">Cities Covered</p>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center"
-            >
-              <h3 className="text-4xl font-bold text-primary-800">100%</h3>
-              <p className="text-gray-600">Client Satisfaction</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-            {/* News Section */}
-            <section id="news" className="py-20 bg-gray-50 relative overflow-hidden">
+      {/* News Section */}
+      <section id="news" className="py-16 bg-gradient-to-b from-white to-gray-50">
         <motion.div 
           className="absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-70"
           style={{
@@ -1027,236 +907,6 @@ const Home = () => {
           </motion.div>
         </motion.div>
       )}
-
-
-{/* Chat Bubble */}
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
-      >
-      </motion.div>
-
-      {/* Contact Section */}
-<section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      className="text-center mb-16"
-    >
-      <h2 className="section-title inline-block">Get In Touch</h2>
-      <p className="text-xl text-gray-600 mt-6">
-        Connect with us for solar solutions, career opportunities, or partnerships
-      </p>
-    </motion.div>
-
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-{/* Contact Us */}
-<motion.div
-  initial={{ opacity: 0, x: -20 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  className="glass-card p-8"
->
-  <h3 className="text-2xl font-bold text-primary-800 mb-4">Contact Us</h3>
-  <div className="space-y-4 text-gray-600">
-    <p>We’d love to hear from you! Reach out to us via the details below, and we’ll get back to you as soon as possible.</p>
-    
-    <div className="space-y-2">
-      <div>
-        <h4 className="font-semibold text-primary-700">Email:</h4>
-        <p>info@yourcompany.com</p>
-      </div>
-      <div>
-        <h4 className="font-semibold text-primary-700">Phone:</h4>
-        <p>+1 (123) 456-7890</p>
-      </div>
-      <div>
-        <h4 className="font-semibold text-primary-700">Address:</h4>
-        <p>123 Solar Way, Green City, CA 90210</p>
-      
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
-            onClick={handleContactClick}
-          >
-            Contact Now 
-          </motion.button>
-        
-      </div>
-    </div>
-  </div>
-</motion.div>
-
-
-      {/* Career with Us */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="glass-card p-8"
-      >
-        <h3 className="text-2xl font-bold text-primary-800 mb-4">Career with Us</h3>
-        <div className="space-y-4">
-          <p className="text-gray-600">Join our dynamic team and be part of the renewable energy revolution. We offer exciting opportunities for growth and innovation.</p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-primary-700">Current Openings:</h4>
-            <ul className="list-disc list-inside text-gray-600">
-              <li>Solar Installation Technician</li>
-              <li>Project Manager</li>
-              <li>Sales Representative</li>
-              <li>Technical Support Specialist</li>
-            </ul>
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
-            onClick={handleCareerClick}
-          >
-            View All Positions
-          </motion.button>
-        </div>
-      </motion.div>
-
-      {/* Partner with Us */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        className="glass-card p-8"
-      >
-        <h3 className="text-2xl font-bold text-primary-800 mb-4">Partner with Us</h3>
-        <div className="space-y-4">
-          <p className="text-gray-600">Explore partnership opportunities and grow your business with us. We welcome collaborations with:</p>
-          <ul className="list-disc list-inside text-gray-600">
-            <li>Solar Equipment Suppliers</li>
-            <li>Installation Contractors</li>
-            <li>Property Developers</li>
-            <li>Energy Consultants</li>
-          </ul>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-all duration-300"
-            onClick={handlePartnerClick}
-          >
-            Become a Partner
-          </motion.button>
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-      {/* Career Modal */}
-      {showCareerModal && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 overflow-y-auto"
-          onClick={closeCareerModal}
-        >
-          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <motion.div 
-              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                    <h3 className="text-2xl font-bold text-primary-800 mb-4">Career Opportunities</h3>
-                    <div className="mt-4 space-y-4">
-                      <p className="text-gray-600">Join our dynamic team and be part of the renewable energy revolution.</p>
-                      <div>
-                        <h4 className="font-semibold text-primary-700 mb-2">Current Openings:</h4>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2">
-                          <li>Solar Installation Technician</li>
-                          <li>Project Manager</li>
-                          <li>Sales Representative</li>
-                          <li>Technical Support Specialist</li>
-                        </ul>
-                      </div>
-                      <p className="text-gray-600">Send your resume to careers@company.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={closeCareerModal}
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Partner Modal */}
-      {showPartnerModal && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 overflow-y-auto"
-          onClick={closePartnerModal}
-        >
-          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <motion.div 
-              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                    <h3 className="text-2xl font-bold text-primary-800 mb-4">Partnership Opportunities</h3>
-                    <div className="mt-4 space-y-4">
-                      <p className="text-gray-600">Explore partnership opportunities and grow your business with us.</p>
-                      <div>
-                        <h4 className="font-semibold text-primary-700 mb-2">We welcome collaborations with:</h4>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2">
-                          <li>Solar Equipment Suppliers</li>
-                          <li>Installation Contractors</li>
-                          <li>Property Developers</li>
-                          <li>Energy Consultants</li>
-                        </ul>
-                      </div>
-                      <p className="text-gray-600">Contact us at partnerships@company.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={closePartnerModal}
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
-
     </div>
   );
 };

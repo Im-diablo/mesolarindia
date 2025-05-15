@@ -69,7 +69,7 @@ const Navbar = () => {
     },
     { 
       name: "Let's Contact", 
-      href: '/#contact',
+      href: '',
       hasDropdown: true,
       dropdownItems: [
         { name: 'Contact Us', href: '/contact' },
@@ -164,11 +164,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled && window.scrollY > window.innerHeight
-        ? 'bg-white/95 shadow-lg border-b-0'
-        : 'bg-white/1 backdrop'
-    }`}>  
+    <nav className={`fixed w-full z-50 transition-all duration-300 bg-black/60 backdrop-blur-md shadow-lg`}>  {/* Blackish, blurred background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -214,7 +210,7 @@ const Navbar = () => {
                       e.preventDefault();
                       handleNavigation(item.href);
                     }}
-                    className={`flex items-center px py-0 rounded-md text-lg font-bold transition-colors text-black hover:text-green-400`}
+                    className={`flex items-center px py-0 rounded-md text-lg font-bold transition-colors text-white/90 hover:text-green-400 drop-shadow-lg`}
                   >
                     {item.name}
                     <ChevronDownIcon className="ml-1 h-4 w-4" />
@@ -262,7 +258,7 @@ const Navbar = () => {
                       handleNavigation(item.href);
                     }
                   }}
-                  className={`relative px py-0 rounded-md text-lg font-bold transition-colors text-black hover:text-green-400`}
+                  className={`relative px py-0 rounded-md text-lg font-bold transition-colors text-white/90 hover:text-green-400 drop-shadow-lg`}
                 >
                   {item.name}
                 </Link>

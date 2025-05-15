@@ -191,7 +191,7 @@ const Career = () => {
   const [openJobIndex, setOpenJobIndex] = useState<number | null>(null);
   const [openInternIndex, setOpenInternIndex] = useState<number | null>(null);
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-b from-white to-gray-50 font-sans">
+    <div className="min-h-screen pt-16 bg-gradient-to-b from-white to-gray-50 font-sans">
       {/* Main Jobs Banner - Larger Image */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
