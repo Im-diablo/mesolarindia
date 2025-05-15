@@ -255,7 +255,7 @@ const Home = () => {
             <p className="text-xl md:text-2xl mb-8 max-w-2xl text-gray-100">
               Leading the way in sustainable energy solutions for a brighter, cleaner future.
             </p>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
             <motion.a
             href="/projects"
            className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
@@ -269,10 +269,10 @@ const Home = () => {
             className="inline-block bg-gradient-to-r from-primary-500 to-primary-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-glow-primary transform hover:-translate-y-1"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          >
+            >
             Contact Us
           </motion.a>
-        </div>
+        </div> */}
           </motion.div>
         </div>
       </section>

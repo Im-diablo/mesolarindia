@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { HiOutlineLocationMarker, HiOutlineLightBulb, HiOutlineTag, HiOutlineCalendar, HiOutlineOfficeBuilding } from 'react-icons/hi';
+import { HiOutlineLocationMarker, HiOutlineLightBulb, HiOutlineCalendar, HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { FaSolarPanel, FaLeaf, FaChartLine } from 'react-icons/fa';
 
 // Define a type for project items
