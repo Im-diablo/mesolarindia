@@ -305,29 +305,54 @@ const Navbar = () => {
                     <div key={item.name}>
                       <button
                         onClick={() => {
-                          handleNavigation(item.href);
-                          setIsOpen(false);
+                          if (item.name === 'Services') setServicesDropdownOpen(!servicesDropdownOpen);
+                          if (item.name === 'NewsRoom') setNewsDropdownOpen(!newsDropdownOpen);
+                          if (item.name === "Let's Contact") setContactDropdownOpen(!contactDropdownOpen);
                         }}
-                        className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
+                        className="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium text-primary-800 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                       >
                         {item.name}
+                        <ChevronDownIcon 
+                          className={`ml-1 h-5 w-5 transition-transform ${
+                            (item.name === 'Services' && servicesDropdownOpen) || 
+                            (item.name === 'NewsRoom' && newsDropdownOpen) || 
+                            (item.name === "Let's Contact" && contactDropdownOpen) 
+                              ? 'transform rotate-180' 
+                              : ''
+                          }`} 
+                        />
                       </button>
-                      <div className="pl-4">
-                        {item.dropdownItems.map((dropdownItem) => (
-                          <motion.button
-                            key={dropdownItem.name}
-                            onClick={() => {
-                              handleNavigation(dropdownItem.href);
-                              setIsOpen(false);
-                            }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-primary-700 hover:text-primary-600 hover:bg-primary-50 transition-colors"
+                      <AnimatePresence>
+                        {((item.name === 'Services' && servicesDropdownOpen) || 
+                          (item.name === 'NewsRoom' && newsDropdownOpen) || 
+                          (item.name === "Let's Contact" && contactDropdownOpen)) && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="pl-4 mt-1"
                           >
-                            {dropdownItem.name}
-                          </motion.button>
-                        ))}
-                      </div>
+                            {item.dropdownItems.map((dropdownItem) => (
+                              <motion.button
+                                key={dropdownItem.name}
+                                onClick={() => {
+                                  handleNavigation(dropdownItem.href);
+                                  setIsOpen(false);
+                                  if (item.name === 'Services') setServicesDropdownOpen(false);
+                                  if (item.name === 'NewsRoom') setNewsDropdownOpen(false);
+                                  if (item.name === "Let's Contact") setContactDropdownOpen(false);
+                                }}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-primary-700 hover:text-primary-600 hover:bg-primary-50 transition-colors"
+                              >
+                                {dropdownItem.name}
+                              </motion.button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
                     <button
