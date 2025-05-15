@@ -15,7 +15,7 @@ const jobOpenings = [
       "Target-driven mindset"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Sales%20Executive%20Residential"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Sales%20Executive%20Residential"
   },
   {
     title: "Business Development Executive - C&I",
@@ -29,7 +29,7 @@ const jobOpenings = [
       "Ability to build client relationships"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Business%20Development%20Executive"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Business%20Development%20Executive"
   },
   {
     title: "Solar Technician",
@@ -43,7 +43,7 @@ const jobOpenings = [
       "Physical ability to work on rooftops"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Solar%20Technician"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Solar%20Technician"
   },
   {
     title: "Solar Engineer – Services",
@@ -57,7 +57,7 @@ const jobOpenings = [
       "Project management skills"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Solar%20Engineer%20Services"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Solar%20Engineer%20Services"
   },
   {
     title: "Liasoning Executive",
@@ -71,7 +71,7 @@ const jobOpenings = [
       "Attention to detail"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Liasoning%20Executive"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Liasoning%20Executive"
   },
   {
     title: "Loan Process Executive",
@@ -85,7 +85,7 @@ const jobOpenings = [
       "Attention to detail"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Loan%20Process%20Executive"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Loan%20Process%20Executive"
   },
   {
     title: "Office Assistant",
@@ -99,7 +99,7 @@ const jobOpenings = [
       "Multitasking ability"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Office%20Assistant"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Office%20Assistant"
   },
   {
     title: "HR Assistant",
@@ -113,7 +113,7 @@ const jobOpenings = [
       "Discretion and confidentiality"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20HR%20Assistant"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20HR%20Assistant"
   },
   {
     title: "Account Executive",
@@ -127,7 +127,7 @@ const jobOpenings = [
       "Attention to detail"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Account%20Executive"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Account%20Executive"
   },
   {
     title: "Digital Marketing Executive",
@@ -141,7 +141,7 @@ const jobOpenings = [
       "Analytics knowledge"
     ],
     salary: "Best in the solar Industry",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Digital%20Marketing%20Executive"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Digital%20Marketing%20Executive"
   }
 ];
 
@@ -156,7 +156,7 @@ const internshipOpenings = [
       "Familiarity with social media platforms"
     ],
     stipend: "",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Marketing%20Intern"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Marketing%20Intern"
   },
   {
     title: "HRM Intern",
@@ -168,7 +168,7 @@ const internshipOpenings = [
       "Interest in renewable energy",
     ],
     stipend: "",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Engineering%20Intern"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Engineering%20Intern"
   },
   {
     title: "Social Media Marketing Intern",
@@ -181,7 +181,7 @@ const internshipOpenings = [
       "Knowledge of social media platforms",
     ],
     stipend: "",
-    applyLink: "mailto:careers@company.com?subject=Application%20for%20Social%20Media%20Marketing%20Intern"
+    applyLink: "mailto:info@mesolarindia.com?subject=Application%20for%20Social%20Media%20Marketing%20Intern"
 }
 ];
 
