@@ -86,7 +86,7 @@ const Enquiry = () => {
         const formDataToSend = new FormData();
         
         // Add your Web3Forms access key - replace with your actual access key
-        formDataToSend.append("access_key", "a44157d3-745c-4fea-858e-f562633ebfaf");
+        formDataToSend.append("access_key", "761cc3d8-ceb7-417c-8031-4575bfa52cdc");
         
         // Add form fields
         formDataToSend.append("enquiryType", formData.enquiryType);
