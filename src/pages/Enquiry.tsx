@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface EnquiryFormData {
-  enquiryType: 'Channel Partner' | 'Business Associate';
+  enquiryType: string;
   name: string;
   city: string;
   state: string;
@@ -19,7 +19,7 @@ interface EnquiryFormData {
 }
 
 const initialFormData: EnquiryFormData = {
-  enquiryType: 'Channel Partner',
+  enquiryType: 'None',
   name: '',
   city: '',
   state: '',
@@ -30,7 +30,6 @@ const initialFormData: EnquiryFormData = {
   sellProposal: '',
   companyName: '',
   profession: '', 
- 
   agencyCompanyName: '',
   timeframe: 'Within 1 WEEK',
   remarks: ''
@@ -44,7 +43,8 @@ const Enquiry = () => {
 
   const validateForm = (): boolean => {
     const newErrors: Partial<EnquiryFormData> = {};
-
+  
+    if (formData.enquiryType === 'None') newErrors.enquiryType = 'Please select an enquiry type.';
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.city.trim()) newErrors.city = 'City is required';
     if (!formData.state.trim()) newErrors.state = 'State is required';
@@ -55,13 +55,13 @@ const Enquiry = () => {
     if (!phoneRegex.test(formData.phone.trim())) {
       newErrors.phone = 'Please enter a valid 10-digit phone number';
     }
-
+  
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
       newErrors.email = 'Please enter a valid email address';
     }
-
+  
     if (formData.hasSolarExperience === 'No' && !formData.sellProposal.trim()) {
       newErrors.sellProposal = 'Please explain how you propose to sell';
     }
@@ -260,7 +260,7 @@ const Enquiry = () => {
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">Enquiry For *</label>
               <div className="flex space-x-4">
-                {['Channel Partner', 'Business Associate'].map((type) => (
+                {['Channel Partner', 'Business Associate','None'].map((type) => (
                   <label key={type} className="inline-flex items-center">
                     <input
                       type="radio"
@@ -274,6 +274,9 @@ const Enquiry = () => {
                   </label>
                 ))}
               </div>
+              {errors.enquiryType && (
+                <p className="mt-1 text-sm text-red-600">{errors.enquiryType}</p>
+              )}
             </div>
 
             {/* Add similar error message displays for other fields */}
