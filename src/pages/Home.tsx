@@ -23,8 +23,7 @@ interface ServiceItem {
 }
 
 const Home = () => {
-  // Fixed contact form state
-  const [contactData, setContactData] = useState({
+  const [] = useState({
     name: '',
     email: '',
     phone: '',
@@ -268,7 +267,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Company Section */}
+      {/* Company Section with Brief Team Info */}
       <section id="company" className="py-20 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -282,101 +281,159 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="glass-card p-8"
-            >
-              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Vision</h3>
-              <p className="text-gray-600">
-                To be the global leader in renewable energy solutions, creating a 
-                cleaner, brighter future for generations to come.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="glass-card p-8"
-            >
-              <h3 className="text-2xl font-bold text-primary-800 mb-4">Our Mission</h3>
-              <p className="text-gray-600">
-                To accelerate the world's transition to sustainable energy through 
-                innovative solar solutions and exceptional service.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Manoj Kumar",
-                role: "Founder & Managing Director",
-                image: "",
-                bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
-              },
-              {
-                "name": "Sunil Sagar",
-                "role": "Founder, Director & Chief Executive Officer (CEO)",
-                "image": "",
-                "bio": "Sunil Sagar is the Founder, Director, and Chief Executive Officer (CEO) of the company. With a postgraduate degree in finance and over a decade of professional experience across the solar energy and IT sectors, he brings a unique blend of technical insight and strategic leadership. Sunil is known for his commitment to systematic corporate governance, operational excellence, and sustainable innovation. Under his leadership, the organization has consistently delivered impactful solutions and achieved measurable growth.",
-                "education": [
-                  "Postgraduate Degree in Finance"
-                ],
-                "experience": "10+ years in solar energy and information technology industries",
-                "expertise": [
-                  "Strategic Leadership",
-                  "Corporate Governance",
-                  "Financial Planning",
-                  "Business Development",
-                  "Sustainable Innovation"
-                ],
-                "achievements": [
-                  "Led company expansion into new markets",
-                  "Developed strategic partnerships with key stakeholders",
-                  "Implemented scalable business operations"
-                ],
-                "location": "India",
-                "linkedin": "https://www.linkedin.com/in/sunilsagar",  // Replace with actual URL if available
-                "email": "sunil.sagar@example.com",
-              },
-              // {
-              //   name: "Sadhna Gupta",
-              //   role: "Director- Stratergy Planning",
-              //   image: "",
-              //   bio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching, enhancing employee development at ME Solar."
-              // },
-              // {
-              //   name: "Reena Gupta",
-              //   role: "Director - Business & Planning",
-              //   image: "",
-              //   bio: "A business professional since 2015, with expertise in practical strategy, collaboration, and growth, fostering a creative and people-focused approach."
-              // },
-            ].map((member, index) => (
+         
+            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+              {/* Mission Card */}
               <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                className={`bg-gradient-to-br from-white to-primary-50 rounded-xl overflow-hidden shadow-soft hover:shadow-glow-primary transition-all duration-300 ${
-                  index === 3 && "md:col-start-2 md:col-end-3"
-                }`}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-2xl shadow-xl border border-blue-100 overflow-hidden mb-16 group hover:shadow-2xl hover:border-blue-300 transition-all duration-500"
               >
-                <img
-                  src={member.image || "/api/placeholder/400/320"}
-                  alt={member.name}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6 border-t border-primary-100">
-                  <h3 className="text-xl font-semibold text-primary-800 mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-primary-600 font-medium mb-2">{member.role}</p>
-                  <p className="text-gray-600">{member.bio}</p>
+                <div className="p-8 md:p-12">
+                  <div className="flex flex-col md:flex-row items-start gap-8">
+                    <div className="md:w-1/3">
+                      <motion.h2 
+                        className="text-4xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent mb-4"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        Our Mission
+                      </motion.h2>
+                    </div>
+                    <div className="md:w-2/3">
+                      <p className="text-lg text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
+                        To accelerate the adoption of renewable energy solutions across industries, enabling a carbon-neutral future through innovation, advanced solar EPC technology, and strategic sustainability initiatives.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
-            ))}
+
+
+
+              {/* Values Section */}
+              <div className="mb-16">
+                <motion.h2
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="text-4xl font-bold text-center bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent mb-12"
+                >
+                  Our Values
+                </motion.h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white border-2 border-blue-500 rounded-xl p-8 shadow-sm group hover:shadow-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                  >
+                    <h3 className="text-2xl font-bold text-blue-700 mb-4">Discipline</h3>
+                    <p className="text-gray-700">Ensuring excellence in renewable energy project execution.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white border-2 border-blue-500 rounded-xl p-8 shadow-sm group hover:shadow-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                  >
+                    <h3 className="text-2xl font-bold text-blue-700 mb-4">Dedication</h3>
+                    <p className="text-gray-700">Commitment to delivering high-impact solar and wind energy solutions.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white border-2 border-blue-500 rounded-xl p-8 shadow-sm group hover:shadow-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                  >
+                    <h3 className="text-2xl font-bold text-blue-700 mb-4">Direction</h3>
+                    <p className="text-gray-700">A clear roadmap towards clean energy transformation.</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white border-2 border-blue-500 rounded-xl p-8 shadow-sm group hover:shadow-blue-200 hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                  >
+                    <h3 className="text-2xl font-bold text-blue-700 mb-4">Decision Making</h3>
+                    <p className="text-gray-700">Using industry insights to optimize solar EPC and BESS projects.</p>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+
+          {/* Leadership Team Brief Section */}
+          <div className="mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
+            >
+              <h3 className="text-2xl font-bold text-primary-800">Our Leadership</h3>
+              <p className="text-gray-600 mt-2">
+                Meet the visionaries behind ME Solar India
+              </p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  name: "Manoj Kumar",
+                  role: "Founder & Managing Director",
+                  image: "/assets/team.png",
+                  bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
+                },
+                {
+                  name: "Sunil Sagar",
+                  role: "Founder, Director & CEO",
+                  image: "/assets/team.png",
+                  bio: "A postgraduate in finance with over a decade of experience across solar energy and IT sectors."
+                }
+              ].map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                  className="bg-gradient-to-br from-white to-blue-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex flex-col md:flex-row">
+                    <img
+                      src={member.image || "/api/placeholder/400/320"}
+                      alt={member.name}
+                      className="w-full md:w-1/3 h-48 object-cover"
+                    />
+                    <div className="p-6 md:w-2/3">
+                      <h3 className="text-xl font-semibold text-blue-800 mb-1">
+                        {member.name}
+                      </h3>
+                      <p className="text-blue-600 font-medium mb-2">{member.role}</p>
+                      <p className="text-gray-600 mb-4">{member.bio}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <a 
+                  href="/team" 
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
+                >
+                  Meet Our Full Team
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </a>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

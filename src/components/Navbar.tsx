@@ -60,7 +60,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Home', href: '/#home' },
-    { name: 'About Company', href: '/#company' },
+    { name: 'About Company', href: '/team' },
     { 
       name: 'Services', 
       href: '/#services',

@@ -21,7 +21,6 @@ interface ProjectItem {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [filter, setFilter] = useState('all');
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Modal handlers
@@ -32,20 +31,52 @@ const Projects = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % 3);
-    }, 5000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  // Filter options
-  const filterOptions = [
-    { value: 'all', label: 'All Projects' },
-    { value: 'Design & Engineering', label: 'Design & Engineering' },
-    { value: 'I&C', label: 'Installation & Commissioning' },
-  ];
-
   const projectItems: ProjectItem[] = [
     {
-      id: 1,
+       id: 1,
+      capacity: "15 MW",
+      type: "DC Work",
+      location: "NTPC, Kanpur",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Large-scale solar installation for NTPC thermal power plant",
+      completionDate: "2023",
+      client: "NTPC",
+      challenge: "Implementation of large-scale DC work in an operational power plant",
+      solution: "Systematic phase-wise implementation with strict safety protocols",
+      results: [
+        "Successfully integrated with existing power infrastructure",
+        "Enhanced power generation capacity",
+        "Reduced carbon footprint"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 2,
+      capacity: "11 MW",
+      type: "Engineering & Design",
+      location: "CEL, Maharashtra",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Engineering and design for CEL solar project",
+      completionDate: "2023",
+      client: "CEL",
+      challenge: "Complex engineering requirements for large-scale implementation",
+      solution: "Comprehensive design approach with advanced engineering solutions",
+      gallery: [
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 3,
       capacity: "600 KW",
       type: "Design & Engineering",
       location: "Delhi-Mumbai Highway, Sohna, Haryana",
@@ -62,11 +93,12 @@ const Projects = () => {
       ],
       gallery: [
         "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
-      id: 2,
+      id: 4,
       capacity: "300 KW",
       type: "Design & Engineering",
       location: "Delhi-Mumbai Highway, Sohna, Haryana",
@@ -80,10 +112,79 @@ const Projects = () => {
         "Achieved 99.8% uptime since installation",
         "Reduced maintenance costs by 40% compared to traditional systems",
         "Implemented smart monitoring for predictive maintenance"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
-      id: 3,
+      id: 5,
+      capacity: "250 KW",
+      type: "I&C",
+      location: "Eurogrip Footware, Agra",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Large-scale installation and commissioning project for Eurogrip's manufacturing facility, reducing operational costs.",
+      completionDate: "October 2023",
+      client: "Eurogrip Footware",
+      challenge: "Installing a large system on an active manufacturing facility without disrupting production schedules.",
+      solution: "Coordinated installation during planned maintenance periods and weekends with a specialized rapid deployment team.",
+      results: [
+        "Completed installation 2 weeks ahead of schedule",
+        "Reduced factory's energy costs by 40%",
+        "Zero production time lost during installation"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 6,
+      capacity: "200 KW",
+      type: "I&C",
+      location: "Rooftop, Mainpuri",
+      image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Rooftop solar installation for commercial building in Mainpuri",
+      completionDate: "2023",
+      client: "Commercial Building Owner",
+      challenge: "Optimizing panel placement on limited rooftop space",
+      solution: "Custom mounting solution to maximize energy generation",
+      results: [
+        "Reduced electricity costs by 40%",
+        "Achieved optimal energy production despite space constraints"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 7,
+      capacity: "125 KW",
+      type: "I&C",
+      location: "Diamond Export, Agra",
+      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Solar installation for Diamond Export facility in Agra",
+      completionDate: "2023",
+      client: "Diamond Export",
+      challenge: "Providing consistent power for precision equipment",
+      solution: "Implemented advanced power conditioning systems",
+      results: [
+        "Eliminated production disruptions due to power issues",
+        "Reduced energy costs by 35%"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 8,
       capacity: "100 KW",
       type: "Design & Engineering, I&C",
       location: "Arvind Hyundai, Agra",
@@ -97,10 +198,120 @@ const Projects = () => {
         "Reduced electricity bills by 45%",
         "Created a green showcase for customers",
         "ROI expected within 4 years"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
-      id: 4,
+      id: 9,
+      capacity: "50 KW",
+      type: "I&C",
+      location: "Rajasthan Charam Kala Kendra, Runkata, Agra",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Solar installation for cultural center in Agra",
+      completionDate: "2023",
+      client: "Rajasthan Charam Kala Kendra",
+      challenge: "Balancing energy needs with aesthetic considerations",
+      solution: "Custom panel placement to maintain building aesthetics",
+      results: [
+        "Reduced energy costs while preserving architectural integrity",
+        "Enhanced sustainability profile of cultural institution"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 10,
+      capacity: "50 KW",
+      type: "I&C",
+      location: "Bhawani Laminators, Agra",
+      image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Solar installation for manufacturing facility in Agra",
+      completionDate: "2023",
+      client: "Bhawani Laminators",
+      challenge: "Meeting high energy demands of manufacturing equipment",
+      solution: "High-efficiency panel system with optimized placement",
+      results: [
+        "Reduced production costs through energy savings",
+        "Improved sustainability profile for manufacturing operations"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 11,
+      capacity: "50 KW",
+      type: "I&C",
+      location: "Nauwa Shoe Manufacturer, Agra",
+      image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Solar installation for shoe manufacturing facility in Agra",
+      completionDate: "2023",
+      client: "Nauwa Shoe Manufacturer",
+      challenge: "Integrating renewable energy into manufacturing processes",
+      solution: "Custom solar solution designed for manufacturing facility needs",
+      results: [
+        "Reduced carbon footprint of manufacturing operations",
+        "Decreased energy costs by 30%"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 12,
+      capacity: "40 KW",
+      type: "Re-I&C",
+      location: "Karam Udyog, Gailana, Agra",
+      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Re-installation and commissioning of solar system for industrial facility",
+      completionDate: "2023",
+      client: "Karam Udyog",
+      challenge: "Upgrading existing solar installation for improved efficiency",
+      solution: "Modernized system with enhanced monitoring capabilities",
+      results: [
+        "Increased energy output by 25%",
+        "Improved system reliability and monitoring"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 13,
+      capacity: "36 KW",
+      type: "I&C",
+      location: "Bhagat Villa, Agra",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Residential solar installation for large villa in Agra",
+      completionDate: "2023",
+      client: "Bhagat Villa",
+      challenge: "Designing aesthetically pleasing system for luxury residence",
+      solution: "Low-profile panels with custom mounting solutions",
+      results: [
+        "Achieved energy independence for large residence",
+        "Maintained architectural integrity of luxury property"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      id: 14,
       capacity: "35 KW",
       type: "Design & Engineering, I&C",
       location: "Sunrise Hospital, Aligarh",
@@ -114,11 +325,16 @@ const Projects = () => {
         "Ensured 100% power availability for critical systems",
         "Reduced dependency on diesel generators by 60%",
         "Decreased carbon footprint while improving reliability"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
-      id: 5,
-      capacity: "30KW",
+      id: 15,
+      capacity: "30 KW",
       type: "Design & Engineering",
       location: "Bhargava Diagnostic, Aligarh",
       image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -131,99 +347,73 @@ const Projects = () => {
         "Eliminated power-related equipment failures",
         "Reduced operational costs by 30%",
         "Improved diagnostic accuracy through stable power supply"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     },
     {
-      id: 6,
-      capacity: "250KW",
+      id: 16,
+      capacity: "20 KW",
       type: "I&C",
-      location: "Eurogrip Footware, Agra",
+      location: "GK Enterprises, Pratapgarh",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      description: "Large-scale installation and commissioning project for Eurogrip's manufacturing facility, reducing operational costs.",
-      completionDate: "October 2023",
-      client: "Eurogrip Footware",
-      challenge: "Installing a large system on an active manufacturing facility without disrupting production schedules.",
-      solution: "Coordinated installation during planned maintenance periods and weekends with a specialized rapid deployment team.",
+      description: "Solar installation for business enterprise in Pratapgarh",
+      completionDate: "2023",
+      client: "GK Enterprises",
+      challenge: "Meeting diverse power needs of multi-function business",
+      solution: "Scalable solar system with smart power distribution",
       results: [
-        "Completed installation 2 weeks ahead of schedule",
-        "Reduced factory's energy costs by 40%",
-        "Zero production time lost during installation"
+        "Reduced operational costs through energy savings",
+        "Created sustainable business operations model"
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
       ]
     }
   ];
-
-  // Filter projects based on selected filter
-  const filteredProjects = filter === 'all' 
-    ? projectItems 
-    : projectItems.filter(project => project.type.includes(filter));
 
   // Featured projects for the hero carousel
   const featuredProjects = projectItems.slice(0, 3);
 
   return (
     <div className="min-h-screen pt-16 bg-gradient-to-b from-white to-gray-50 font-sans overflow-hidden">
-      {/* Hero Carousel Section - Full Width */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative w-full left-0 right-0 h-[90vh] flex items-center justify-center overflow-hidden"
-      >
-        {featuredProjects.map((project, index) => (
-          <motion.div 
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: activeIndex === index ? 1 : 0,
-              scale: activeIndex === index ? 1 : 1.1,
-            }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className={`absolute inset-0 ${activeIndex === index ? 'z-10' : 'z-0'}`}
-          >
-            <img
-              src={project.image}
-              alt={project.location}
-              className="w-full h-full object-cover absolute inset-0 filter brightness-75"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"></div>
-            <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4">
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: activeIndex === index ? 0 : 30, opacity: activeIndex === index ? 1 : 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-center max-w-4xl mx-auto"
-              >
-                <h1 className="text-6xl font-extrabold text-white mb-6 drop-shadow-lg tracking-tight">
-                  {project.capacity} <span className="text-primary-400">Solar Installation</span>
-                </h1>
-                <h2 className="text-3xl font-bold text-white mb-4">{project.location}</h2>
-                <p className="text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto font-light leading-relaxed mb-8">
-                  {project.description}
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary text-lg px-8 py-3"
-                  onClick={() => openProjectModal(project)}
-                >
-                  Explore Project
-                </motion.button>
-              </motion.div>
-            </div>
-          </motion.div>
-        ))}
-        
-        {/* Carousel Indicators */}
-        <div className="absolute bottom-10 left-0 right-0 z-30 flex justify-center space-x-3">
-          {featuredProjects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-primary-500 w-10' : 'bg-white/50 hover:bg-white/80'}`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+      {/* Hero Section - Static */}
+      <div className="relative w-full left-0 right-0 h-[65vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Renewable Energy Project"
+            className="w-full h-full object-cover absolute inset-0 filter brightness-75"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"></div>
         </div>
-      </motion.div>
+        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-6xl font-extrabold text-white mb-6 drop-shadow-lg tracking-tight">
+              Our <span className="text-primary-400">Renewable Energy</span> Projects
+            </h1>
+            <p className="text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto font-light leading-relaxed mb-8">
+              Explore our innovative solar solutions that power a sustainable future across India. From large-scale installations to custom designs, we deliver excellence in every project.
+            </p>
+            <button
+              className="btn-primary text-lg px-8 py-3 hover:scale-105 active:scale-95 transition-transform"
+              onClick={() => {
+                // Scroll to the featured projects section
+                document.querySelector('.section-title')?.parentElement?.parentElement?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
+              Explore Projects
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Project Stats with Icons */}
       <section className="py-16 bg-white relative z-10">
@@ -245,7 +435,7 @@ const Projects = () => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0}}
               viewport={{ once: true }}
               className="text-center p-6 glass-card hover:bg-white/90 hover:-translate-y-2 transition-all duration-300"
             >
@@ -301,7 +491,7 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Projects Section with Full-Width Zig-Zag Layout */}
+      {/* Projects Section with Full-Width Zig-Zag Layout */
       <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative">
         {/* Background decorative elements */}
         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent z-0"></div>
@@ -323,8 +513,8 @@ const Projects = () => {
               </p>
             </motion.div>
 
-            {/* Filter Controls */}
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {/* Removed: Filter Controls */}
+            {/* <div className="flex flex-wrap justify-center gap-4 mb-16">
               {filterOptions.map((option) => (
                 <motion.button
                   key={option.value}
@@ -336,12 +526,12 @@ const Projects = () => {
                   {option.label}
                 </motion.button>
               ))}
-            </div>
+            </div> */}
           </div>
 
-          {/* Full-Width Projects Zig-Zag Layout */}
+          {/* Full-Width Projects Zig-Zag Layout - Using projectItems instead of filteredProjects */}
           <div className="space-y-32">
-            {filteredProjects.map((project, index) => (
+            {projectItems.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -431,7 +621,7 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Project Detail Modal */}
+          }
       {selectedProject && (
         <motion.div 
           initial={{ opacity: 0 }}
