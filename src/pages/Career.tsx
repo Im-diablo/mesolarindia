@@ -239,7 +239,7 @@ const Career = () => {
             </h2>
             <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500 h-full transform transition-transform hover:scale-[1.01] duration-300">
               <p className="text-gray-700 mb-5 leading-relaxed text-lg">
-                <strong className="text-blue-700 font-semibold">At our company</strong>, we are committed to driving the green energy revolution. With over 750+ MW of installed capacity till 2024 and corporate and PSU clients across various sectors, we are at the forefront of renewable energy solutions. Our team is composed of experts who are passionate about making a difference, and we're growing fast!
+                <strong className="text-blue-700 font-semibold">At our company</strong>, we are committed to driving the green energy revolution. We are at the forefront of renewable energy solutions. Our team is composed of experts who are passionate about making a difference, and we're growing fast!
               </p>
               <p className="text-gray-700 leading-relaxed text-lg">
                 Whether you're an experienced professional or a passionate newcomer, you'll have the opportunity to develop your skills, work on cutting-edge projects, and contribute to a more sustainable world.
