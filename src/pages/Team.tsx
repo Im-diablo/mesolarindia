@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Mail } from 'lucide-react';
+import { HiOutlineMail } from 'react-icons/hi';
 
 // Define a type for team member items
 interface TeamMember {
@@ -276,9 +276,9 @@ const Team = () => {
                         
                         <h3 className="text-lg font-semibold text-blue-800 mb-3">Contact Information</h3>
                         <div className="space-y-3">
-                        <p className="flex items-center text-gray-700 mb-2">
+                        <p className="flex items-center text-gray-700">
                           <a href={`mailto:${selectedMember.email}`} className="text-blue-600 hover:underline text-sm flex items-center w-full overflow-hidden">
-                            <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <HiOutlineMail className="w-4 h-4 mr-2 flex-shrink-0" />
                             <span className="truncate">{selectedMember.email}</span>
                           </a>
                         </p>
