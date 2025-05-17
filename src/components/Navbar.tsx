@@ -103,70 +103,30 @@ const Navbar = () => {
     setContactDropdownOpen(false);
     
     if (href.startsWith('/') && !href.includes('#')) {
+      // For regular page navigation
       navigate(href);
-      window.scrollTo(0, 0);
-    } else {
-      const hashPart = href.includes('#') ? href.substring(href.indexOf('#')) : '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.includes('#')) {
+      // For anchor links within the same page
+      const path = href.split('#')[0] || '/';
+      const hash = href.split('#')[1];
       
-      if (href.startsWith('/') && href !== '/') {
-        navigate(href.substring(0, href.indexOf('#')));
-        setTimeout(() => scrollToSection(hashPart), 100);
-      } else {
-        scrollToSection(hashPart);
-      }
+      navigate(path);
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          const navbarHeight = 64;
+          const top = element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // Default case
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  const scrollToSection = (href: string) => {
-    console.log(`Attempting to navigate to section: ${href}`);
-    
-    setIsOpen(false);
-    
-    setServicesDropdownOpen(false);
-    
-    const isServiceLink = href.startsWith('#services-');
-    
-    setTimeout(() => {
-      if (isServiceLink) {
-        const servicesSection = document.querySelector('#services');
-        if (servicesSection) {
-          const navbarHeight = 64;
-          const servicesTop = servicesSection.getBoundingClientRect().top + window.scrollY - navbarHeight;
-          
-          window.scrollTo({
-            top: servicesTop,
-            behavior: 'smooth'
-          });
-          
-          setTimeout(() => {
-            const serviceElement = document.querySelector(href);
-            if (serviceElement) {
-              const serviceTop = serviceElement.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; 
-              window.scrollTo({
-                top: serviceTop,
-                behavior: 'smooth'
-              });
-            }
-          }, 300);
-        }
-      } else {
-        const element = document.querySelector(href);
-        if (element) {
-          console.log(`Element found for ${href}:`, element);
-          const navbarHeight = 64;
-          const top = element.getBoundingClientRect().top + window.scrollY - navbarHeight;
-          
-          window.scrollTo({ 
-            top, 
-            behavior: 'smooth'
-          });
-          console.log(`Successfully scrolled to section: ${href}`);
-        } else {
-          console.error(`Element not found for ${href}`);
-        }
-      }
-    }, 100);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -190,7 +150,7 @@ const Navbar = () => {
                 }}
               >
                 <motion.img 
-                  src="/assets/logo.png"
+                  src="/assets/logo.webp"
                   alt="ME Solar Logo" 
                   className="h-36 w-36"
                   whileHover={{ scale: 1.1 }}

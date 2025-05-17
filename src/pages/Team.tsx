@@ -1,34 +1,26 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Mail } from 'lucide-react';
 
 // Define a type for team member items
 interface TeamMember {
   name: string;
   position: string;
-  department: string;
   image: string;
   briefBio: string;
   fullBio: string;
   email: string;
   linkedin: string;
-  experience?: string;
-  expertise?: string[];
 }
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-
-  // Add scroll lock effect when modal is open
   useEffect(() => {
     if (selectedMember) {
-      // Disable scrolling on body when modal is open
       document.body.style.overflow = 'hidden';
     } else {
-      // Re-enable scrolling when modal is closed
       document.body.style.overflow = 'auto';
     }
-    
-    
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -39,48 +31,37 @@ const Team = () => {
     {
       name: "Manoj Kumar",
       position: "Founder & Managing Director",
-      department: "Executive",
-      image: "/assets/team.png",
+      image: "/assets/manoj.jpg",
       briefBio: "A technical graduate and certified professional with deep expertise in renewable and solar energy.",
-      fullBio: "Manoj Kumar is the Founder and Managing Director of ME Solar India. As a technical graduate and certified professional, he brings extensive expertise in renewable and solar energy to the company. With a strong background in engineering and sustainable energy solutions, Manoj has been instrumental in establishing ME Solar as a leading provider of solar solutions in India. His vision and leadership continue to drive the company's growth and innovation in the renewable energy sector.",
-      email: "manoj.kumar@mesolar.com",
-      linkedin: "https://linkedin.com/in/manojkumar",
-      experience: "15+ years in renewable energy sector",
-      expertise: ["Solar Energy Systems", "Renewable Energy Solutions", "Project Management", "Strategic Planning"],
+      fullBio: "Manoj Kumar is the Founder and Managing Director of ME Solar India. As a technical graduate and certified professional, he brings extensive expertise in renewable and solar energy to the company. With a strong background in engineering and sustainable energy solutions, \n\nManoj has been instrumental in establishing ME Solar as a leading provider of solar solutions in India. His vision and leadership continue to drive the company's growth and innovation in the renewable energy sector.",
+      email: "manoj.kumar@mesolarindia.com",
+      linkedin: "https://www.linkedin.com/in/manoj-kumar-b910b01a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
       name: "Sunil Sagar",
       position: "Founder, Director & CEO",
-      department: "Executive",
-      image: "/assets/team.png",
+      image: "/assets/team.webp",
       briefBio: "A postgraduate in finance with over a decade of experience across solar energy and IT sectors.",
-      fullBio: "Sunil Sagar is the Founder, Director, and Chief Executive Officer (CEO) of ME Solar India. With a postgraduate degree in finance and over a decade of professional experience across the solar energy and IT sectors, he brings a unique blend of technical insight and strategic leadership. Sunil is known for his commitment to systematic corporate governance, operational excellence, and sustainable innovation. Under his leadership, the organization has consistently delivered impactful solutions and achieved measurable growth.",
-      email: "sunil.sagar@mesolar.com",
-      linkedin: "https://linkedin.com/in/sunilsagar",
-      education: ["Postgraduate Degree in Finance"],
-      experience: "10+ years in solar energy and information technology industries",
-      expertise: ["Strategic Leadership", "Corporate Governance", "Financial Planning", "Business Development", "Sustainable Innovation"],
-
-    },
+      fullBio: "Sunil Sagar is the Founder, Director, and Chief Executive Officer (CEO) of Mature Energy Solar India Pvt Ltd. With a postgraduate degree in finance and marketing and over a decade of professional experience across the solar energy and GEM Government e-Marketplace, he brings a unique blend of technical insight and strategic leadership.\n\nSunil is known for his commitment to systematic corporate governance, operational excellence, and sustainable innovation. Under his leadership, the organization has consistently delivered impactful solutions and achieved measurable growth.",
+      email: "sunil.sagar@mesolarindia.com",
+      linkedin: "https://www.linkedin.com/in/sunil-sagar-b85607109",
+    }
     // {
     //     name: "Sadhna Gupta",
     //     position: "Director – Strategy Planning",
     //     department: "Executive",
-    //     image: "/assets/team.png", // Update the path if there's a different image available
+    //     image: "/assets/team.webp", // Update the path if there's a different image available
     //     briefBio: "Brings 7 years of experience in the education sector, specializing in mentoring and coaching.",
     //     fullBio: "Sadhna Gupta is the Director of Strategy Planning at ME Solar India. With 7 years of experience in the education sector, she has built a strong foundation in mentoring, coaching, and leadership development. Her focus on human capital and organizational growth has helped enhance employee development across ME Solar. Sadhna’s strategic vision and people-centric approach contribute significantly to the company’s long-term goals.",
     //     email: "sadhna.gupta@mesolar.com",
     //     linkedin: "https://linkedin.com/in/sadhnagupta", // Update if available
     //     education: ["Bachelor's Degree in Education or Related Field"], // Update if more accurate info is available
-    //     experience: "7 years in the education sector, focused on coaching and employee development",
-    //     expertise: ["Mentoring & Coaching", "Strategic Planning", "Employee Development", "Organizational Growth"],
-    //     achievements: ["Established employee mentoring programs", "Enhanced internal development frameworks", "Contributed to strategic workforce planning"]
     //   },
     //   {
     //     name: "Reena Gupta",
     //     position: "Director – Business & Planning",
     //     department: "Executive",
-    //     image: "/assets/team.png", // Update the path if there's a different image available
+    //     image: "/assets/team.webp", // Update the path if there's a different image available
     //     briefBio: "A business professional since 2015 with a focus on strategy, collaboration, and organizational growth.",
     //     fullBio: "Reena Gupta serves as the Director of Business & Planning at ME Solar India. Since beginning her professional journey in 2015, she has demonstrated a strong aptitude for practical strategy, business planning, and team collaboration. Reena is known for fostering a creative and people-focused culture that aligns with ME Solar’s vision. Her work plays a key role in shaping the company’s growth roadmap and enhancing cross-functional coordination.",
     //     email: "reena.gupta@mesolar.com",
@@ -226,26 +207,26 @@ const Team = () => {
   
         <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mt-10">
           {teamMembers.map((member) => (
-            <div key={member.name} className="flex bg-white rounded-lg overflow-hidden shadow-lg h-64">
-              <div className="w-1/2 h-full">
+            <div key={member.name} className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden shadow-2xl shadow-blue-400/80 ring-2 ring-blue-200/50 transition-all duration-100 hover:shadow-blue-300/90 hover:ring-blue-100 hover:scale-[1.02]">
+              <div className="w-full md:w-64 h-64 flex items-center justify-center bg-gray-100">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-1/2 p-6 flex flex-col justify-between h-full">
+              <div className="flex-1 p-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-gray-600 font-medium mb-4">{member.position}</p>
-                  <p className="text-gray-700 text-sm">{member.briefBio}</p>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">{member.name}</h3>
+                  <p className="text-xl text-gray-600 font-medium mb-4">{member.position}</p>
+                  <p className="text-lg text-gray-700 leading-relaxed">{member.briefBio}</p>
                 </div>
                 <button 
                   onClick={() => setSelectedMember(member)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1.5 px-3 rounded-full flex items-center transition-all duration-300 mt-4 self-start"
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-base font-medium py-2 px-4 rounded-full flex items-center transition-all duration-300 mt-6 self-start"
                 >
                   <span>Read More</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
@@ -254,7 +235,6 @@ const Team = () => {
           ))}
         </div>
       </div>
-
       {/* Modal for detailed member info - with scroll lock already implemented via useEffect */}
       <AnimatePresence>
         {selectedMember && (
@@ -296,52 +276,32 @@ const Team = () => {
                         
                         <h3 className="text-lg font-semibold text-blue-800 mb-3">Contact Information</h3>
                         <div className="space-y-3">
+                        <p className="flex items-center text-gray-700 mb-2">
+                          <a href={`mailto:${selectedMember.email}`} className="text-blue-600 hover:underline text-sm flex items-center w-full overflow-hidden">
+                            <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <span className="truncate">{selectedMember.email}</span>
+                          </a>
+                        </p>
                           <p className="flex items-center text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                            </svg>
-                            <a href={`mailto:${selectedMember.email}`} className="text-blue-600 hover:underline">
-                              {selectedMember.email}
-                            </a>
-                          </p>
-                          <p className="flex items-center text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-blue-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                             </svg>
-                            <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                            <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm truncate">
                               LinkedIn Profile
                             </a>
                           </p>
                         </div>
                       </div>
-                      
-                      {selectedMember.experience && (
-                        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                          <h3 className="text-lg font-semibold text-blue-800 mb-2">Experience</h3>
-                          <p className="text-gray-700">{selectedMember.experience}</p>
-                        </div>
-                      )}
-                    </div>
-                    
+                      </div>
                     <div className="lg:w-2/3">
                       <div className="bg-white rounded-xl border border-blue-100 p-6 mb-6 shadow-sm">
                         <h3 className="text-xl font-semibold text-blue-800 mb-4">Biography</h3>
-                        <p className="text-gray-700 leading-relaxed">{selectedMember.fullBio}</p>
-                      </div>
-                      
-                      {selectedMember.expertise && (
-                        <div className="bg-white rounded-xl border border-blue-100 p-6 mb-6 shadow-sm">
-                          <h3 className="text-xl font-semibold text-blue-800 mb-4">Areas of Expertise</h3>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedMember.expertise.map((skill, index) => (
-                              <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                        <div className="text-gray-700 leading-relaxed">
+                          {selectedMember.fullBio.split('\n\n').map((paragraph, index) => (
+                            <p key={index} className={index < selectedMember.fullBio.split('\n\n').length - 1 ? 'mb-4' : ''}>{paragraph}</p>
+                          ))}
                         </div>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -174,7 +174,7 @@ const ContactUs = () => {
           >
             <div className="mb-8">
               <img 
-                src="/assets/logo.png" 
+                src="/assets/logo.webp" 
                 alt="ME Solar Logo" 
                 className="w-48 h-auto mb-6"
               />

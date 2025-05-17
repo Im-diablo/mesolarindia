@@ -21,7 +21,7 @@ interface ProjectItem {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [,setActiveIndex] = useState(0);
 
   // Modal handlers
   const openProjectModal = (project: ProjectItem) => setSelectedProject(project);
@@ -376,10 +376,6 @@ const Projects = () => {
       ]
     }
   ];
-
-  // Featured projects for the hero carousel
-  const featuredProjects = projectItems.slice(0, 3);
-
   return (
     <div className="min-h-screen pt-16 bg-gradient-to-b from-white to-gray-50 font-sans overflow-hidden">
       {/* Hero Section - Static */}
@@ -512,21 +508,6 @@ const Projects = () => {
                 Explore our successful solar installations across India, delivering sustainable energy solutions
               </p>
             </motion.div>
-
-            {/* Removed: Filter Controls */}
-            {/* <div className="flex flex-wrap justify-center gap-4 mb-16">
-              {filterOptions.map((option) => (
-                <motion.button
-                  key={option.value}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`px-8 py-3 rounded-full transition-all duration-300 text-lg font-medium ${filter === option.value ? 'bg-primary-600 text-white shadow-lg' : 'bg-white text-gray-700 border border-gray-200 hover:border-primary-300 hover:bg-primary-50'}`}
-                  onClick={() => setFilter(option.value)}
-                >
-                  {option.label}
-                </motion.button>
-              ))}
-            </div> */}
           </div>
 
           {/* Full-Width Projects Zig-Zag Layout - Using projectItems instead of filteredProjects */}

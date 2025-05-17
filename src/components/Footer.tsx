@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 
@@ -11,18 +11,11 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Company', href: '#company' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Company', href: '/team' },
+    { name: 'Contact', href: '/contact' }
   ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-primary-900 text-white">
@@ -50,10 +43,6 @@ const Footer = () => {
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
                     className="text-gray-300 hover:text-primary-300 transition-colors duration-300 block animated-underline inline-block"
                   >
                     {link.name}
@@ -126,7 +115,7 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-300" // Reduced mt-8 pt-8 to mt-6 pt-6
+          className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-300" 
         >
           <p>&copy; {new Date().getFullYear()} ME Solar. All rights reserved.</p>
         </motion.div>
