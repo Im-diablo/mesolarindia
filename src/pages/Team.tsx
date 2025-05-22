@@ -31,7 +31,7 @@ const Team = () => {
     {
       name: "Manoj Kumar",
       position: "Founder & Managing Director",
-      image: "/assets/manoj.jpg",
+      image: "/assets/team/manoj.jpg",
       briefBio: "A technical graduate and certified professional with deep expertise in renewable and solar energy.",
       fullBio: "Manoj Kumar is the Founder and Managing Director of ME Solar India. As a technical graduate and certified professional, he brings extensive expertise in renewable and solar energy to the company. With a strong background in engineering and sustainable energy solutions, \n\nManoj has been instrumental in establishing ME Solar as a leading provider of solar solutions in India. His vision and leadership continue to drive the company's growth and innovation in the renewable energy sector.",
       email: "manoj.kumar@mesolarindia.com",
@@ -40,7 +40,7 @@ const Team = () => {
     {
       name: "Sunil Sagar",
       position: "Founder, Director & CEO",
-      image: "/assets/team.webp",
+      image: "/assets/team/sunil.jpg",
       briefBio: "A postgraduate in finance with over a decade of experience across solar energy and IT sectors.",
       fullBio: "Sunil Sagar is the Founder, Director, and Chief Executive Officer (CEO) of Mature Energy Solar India Pvt Ltd. With a postgraduate degree in finance and marketing and over a decade of professional experience across the solar energy and GEM Government e-Marketplace, he brings a unique blend of technical insight and strategic leadership.\n\nSunil is known for his commitment to systematic corporate governance, operational excellence, and sustainable innovation. Under his leadership, the organization has consistently delivered impactful solutions and achieved measurable growth.",
       email: "sunil.sagar@mesolarindia.com",

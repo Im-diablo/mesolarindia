@@ -13,7 +13,6 @@ interface ProjectItem {
   description?: string;
   completionDate?: string;
   client?: string;
-  challenge?: string;
   solution?: string;
   results?: string[];
   gallery?: string[];
@@ -43,9 +42,8 @@ const Projects = () => {
       location: "NTPC, Kanpur",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Large-scale solar installation for NTPC thermal power plant",
-      completionDate: "2023",
-      client: "NTPC",
-      challenge: "Implementation of large-scale DC work in an operational power plant",
+      completionDate: "Feburary 2020",
+      client: "Hoplite Energy Solutions Pvt. Ltd.",
       solution: "Systematic phase-wise implementation with strict safety protocols",
       results: [
         "Successfully integrated with existing power infrastructure",
@@ -53,38 +51,32 @@ const Projects = () => {
         "Reduced carbon footprint"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id1/img1.jpg",
       ]
     },
     {
       id: 2,
       capacity: "11 MW",
-      type: "Engineering & Design",
+      type: "Engineering & Design & I&C",
       location: "CEL, Maharashtra",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Engineering and design for CEL solar project",
-      completionDate: "2023",
-      client: "CEL",
-      challenge: "Complex engineering requirements for large-scale implementation",
+      completionDate: "December 2023",
+      client: "Hoplite Energy Solutions Pvt. Ltd.",
       solution: "Comprehensive design approach with advanced engineering solutions",
       gallery: [
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id2/img1.jpg",
       ]
     },
     {
       id: 3,
       capacity: "600 KW",
-      type: "Design & Engineering",
-      location: "Delhi-Mumbai Highway, Sohna, Haryana",
+      type: "Design & Engineering & Erection Management",
+      location: "Delhi-Mumbai Highway, Nuh, Haryana",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "A large-scale solar installation along the Delhi-Mumbai Highway, providing sustainable energy to nearby facilities.",
-      completionDate: "January 2023",
-      client: "National Highways Authority of India",
-      challenge: "Installing solar panels in a high-traffic area with limited access and strict safety requirements.",
+      completionDate: "December 2023",
+      client: "Aakar Power System Pvt. Ltd.",
       solution: "Implemented a phased installation approach with specialized mounting systems designed for highway environments.",
       results: [
         "Reduced carbon emissions by 750 tons annually",
@@ -92,21 +84,19 @@ const Projects = () => {
         "Created a showcase project for sustainable highway infrastructure"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id3/img1.jpg",
+        "assets/projects/id3/img2.jpg",
       ]
     },
     {
       id: 4,
       capacity: "300 KW",
-      type: "Design & Engineering",
+      type: "Design & Engineering and Erection Management",
       location: "Delhi-Mumbai Highway, Sohna, Haryana",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Solar power system designed for highway infrastructure, providing energy for lighting and monitoring systems.",
-      completionDate: "November 2022",
-      client: "Highway Infrastructure Development Corp",
-      challenge: "Designing a system that could withstand extreme weather conditions while maintaining optimal efficiency.",
+      completionDate: "December 2023",
+      client: "Aakar Power System Pvt. Ltd.",
       solution: "Utilized weather-resistant panels and implemented a robust monitoring system for remote management.",
       results: [
         "Achieved 99.8% uptime since installation",
@@ -114,21 +104,20 @@ const Projects = () => {
         "Implemented smart monitoring for predictive maintenance"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id4/img1.jpg",
+        "assets/projects/id4/img2.jpg",
+        "assets/projects/id4/img3.jpg",
       ]
     },
     {
       id: 5,
       capacity: "250 KW",
       type: "I&C",
-      location: "Eurogrip Footware, Agra",
+      location: "Eurogrip Safety Footware, Agra",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Large-scale installation and commissioning project for Eurogrip's manufacturing facility, reducing operational costs.",
-      completionDate: "October 2023",
-      client: "Eurogrip Footware",
-      challenge: "Installing a large system on an active manufacturing facility without disrupting production schedules.",
+      completionDate: "August 2022",
+      client: "Aakar Power System Pvt. Ltd.",
       solution: "Coordinated installation during planned maintenance periods and weekends with a specialized rapid deployment team.",
       results: [
         "Completed installation 2 weeks ahead of schedule",
@@ -136,9 +125,8 @@ const Projects = () => {
         "Zero production time lost during installation"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id5/img1.jpg",
+        "assets/projects/id5/img2.jpg",
       ]
     },
     {
@@ -150,7 +138,6 @@ const Projects = () => {
       description: "Rooftop solar installation for commercial building in Mainpuri",
       completionDate: "2023",
       client: "Commercial Building Owner",
-      challenge: "Optimizing panel placement on limited rooftop space",
       solution: "Custom mounting solution to maximize energy generation",
       results: [
         "Reduced electricity costs by 40%",
@@ -169,18 +156,15 @@ const Projects = () => {
       location: "Diamond Export, Agra",
       image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Solar installation for Diamond Export facility in Agra",
-      completionDate: "2023",
-      client: "Diamond Export",
-      challenge: "Providing consistent power for precision equipment",
+      completionDate: "January 2021",
+      client: "Aakar Power System Pvt. Ltd.",
       solution: "Implemented advanced power conditioning systems",
       results: [
         "Eliminated production disruptions due to power issues",
         "Reduced energy costs by 35%"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id7/img1.jpg",
       ]
     },
     {
@@ -190,21 +174,16 @@ const Projects = () => {
       location: "Arvind Hyundai, Agra",
       image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Complete solar solution for Arvind Hyundai's dealership, including design, engineering, installation, and commissioning.",
-      completionDate: "March 2023",
-      client: "Arvind Hyundai",
-      challenge: "Integrating solar power with existing electrical systems while maintaining dealership operations.",
+      completionDate: "September 2022",
+      client: "Aakar Power System Pvt. Ltd.",
       solution: "Implemented a phased installation plan with minimal disruption to business operations.",
       results: [
         "Reduced electricity bills by 45%",
         "Created a green showcase for customers",
         "ROI expected within 4 years"
       ],
-      gallery: [
-        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-      ]
-    },
+      gallery: [ "assets/projects/id8/img1.jpg"
+      ]    },
     {
       id: 9,
       capacity: "50 KW",
@@ -214,7 +193,6 @@ const Projects = () => {
       description: "Solar installation for cultural center in Agra",
       completionDate: "2023",
       client: "Rajasthan Charam Kala Kendra",
-      challenge: "Balancing energy needs with aesthetic considerations",
       solution: "Custom panel placement to maintain building aesthetics",
       results: [
         "Reduced energy costs while preserving architectural integrity",
@@ -235,7 +213,6 @@ const Projects = () => {
       description: "Solar installation for manufacturing facility in Agra",
       completionDate: "2023",
       client: "Bhawani Laminators",
-      challenge: "Meeting high energy demands of manufacturing equipment",
       solution: "High-efficiency panel system with optimized placement",
       results: [
         "Reduced production costs through energy savings",
@@ -256,7 +233,6 @@ const Projects = () => {
       description: "Solar installation for shoe manufacturing facility in Agra",
       completionDate: "2023",
       client: "Nauwa Shoe Manufacturer",
-      challenge: "Integrating renewable energy into manufacturing processes",
       solution: "Custom solar solution designed for manufacturing facility needs",
       results: [
         "Reduced carbon footprint of manufacturing operations",
@@ -277,7 +253,6 @@ const Projects = () => {
       description: "Re-installation and commissioning of solar system for industrial facility",
       completionDate: "2023",
       client: "Karam Udyog",
-      challenge: "Upgrading existing solar installation for improved efficiency",
       solution: "Modernized system with enhanced monitoring capabilities",
       results: [
         "Increased energy output by 25%",
@@ -296,18 +271,15 @@ const Projects = () => {
       location: "Bhagat Villa, Agra",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Residential solar installation for large villa in Agra",
-      completionDate: "2023",
-      client: "Bhagat Villa",
-      challenge: "Designing aesthetically pleasing system for luxury residence",
+      completionDate: "February 2021",
+      client: "Sunsure Energy Pvt. Ltd.",
       solution: "Low-profile panels with custom mounting solutions",
       results: [
         "Achieved energy independence for large residence",
         "Maintained architectural integrity of luxury property"
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        "assets/projects/id13/img1.jpg",
       ]
     },
     {
@@ -319,7 +291,6 @@ const Projects = () => {
       description: "Critical power backup system for Sunrise Hospital, ensuring uninterrupted power for essential medical equipment.",
       completionDate: "June 2023",
       client: "Sunrise Hospital",
-      challenge: "Creating a reliable solar system that could integrate with the hospital's critical power needs and backup generators.",
       solution: "Designed a hybrid system with battery storage and smart switching capabilities for seamless power transitions.",
       results: [
         "Ensured 100% power availability for critical systems",
@@ -341,7 +312,6 @@ const Projects = () => {
       description: "Custom solar solution for a diagnostic center with specialized power requirements for sensitive medical equipment.",
       completionDate: "August 2023",
       client: "Bhargava Diagnostic Center",
-      challenge: "Providing clean, stable power for sensitive diagnostic equipment with zero tolerance for fluctuations.",
       solution: "Implemented advanced power conditioning and battery backup systems with medical-grade power quality.",
       results: [
         "Eliminated power-related equipment failures",
@@ -363,7 +333,6 @@ const Projects = () => {
       description: "Solar installation for business enterprise in Pratapgarh",
       completionDate: "2023",
       client: "GK Enterprises",
-      challenge: "Meeting diverse power needs of multi-function business",
       solution: "Scalable solar system with smart power distribution",
       results: [
         "Reduced operational costs through energy savings",
@@ -687,33 +656,7 @@ const Projects = () => {
                   <p className="text-gray-700 text-lg leading-relaxed">{selectedProject.description}</p>
                 </div>
               )}
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                {selectedProject.challenge && (
-                  <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-primary-500">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                      </svg>
-                      Challenge
-                    </h3>
-                    <p className="text-gray-700">{selectedProject.challenge}</p>
-                  </div>
-                )}
-                
-                {selectedProject.solution && (
-                  <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-accent-500">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                      Our Solution
-                    </h3>
-                    <p className="text-gray-700">{selectedProject.solution}</p>
-                  </div>
-                )}
-              </div>
-              
+      
               {selectedProject.results && selectedProject.results.length > 0 && (
                 <div className="mb-8 bg-gradient-to-r from-primary-50 to-white p-6 rounded-lg">
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">

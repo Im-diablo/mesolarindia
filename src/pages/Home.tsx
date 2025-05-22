@@ -323,13 +323,13 @@ const Home = () => {
                 {
                   name: "Manoj Kumar",
                   role: "Founder & Managing Director",
-                  image: "/assets/team.png",
+                  image: "/assets/team/manoj.jpg",
                   bio: "A technical graduate and certified professional with deep expertise in renewable and solar energy."
                 },
                 {
                   name: "Sunil Sagar",
                   role: "Founder, Director & CEO",
-                  image: "/assets/team.png",
+                  image: "/assets/team/sunil.jpg",
                   bio: "A postgraduate in finance with over a decade of experience across solar energy and IT sectors."
                 }
               ].map((member, index) => (
