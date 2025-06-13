@@ -11,6 +11,7 @@ import Blogs from './pages/news/Blogs';
 import Projects from './pages/Projects';
 import ScrollToTop from './components/ScrollToTop';
 import Team from './pages/Team';
+import ThankYou from './pages/ThankYou';
 
 
 function App() {
@@ -24,13 +25,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/career" element={<Career />} />
             <Route path="/enquiry" element={<Enquiry />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/media" element={<Media />} />
             <Route path="/events" element={<Events />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/team" element={<Team />} />
-
           </Routes>
         </main>
         <Footer />

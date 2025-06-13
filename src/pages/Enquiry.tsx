@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface EnquiryFormData {
   enquiryType: string;
@@ -36,6 +37,7 @@ const initialFormData: EnquiryFormData = {
 };
 
 const Enquiry = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<EnquiryFormData>(initialFormData);
   const [errors, setErrors] = useState<Partial<EnquiryFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +71,7 @@ const Enquiry = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Updated handleSubmit function with inline status messages
+  // Updated handleSubmit function with redirect
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submission attempted");
@@ -96,20 +98,16 @@ const Enquiry = () => {
         formDataToSend.append("address", `${formData.address}, ${formData.city}, ${formData.state}`);
         formDataToSend.append("hasSolarExperience", formData.hasSolarExperience);
         formDataToSend.append("sellProposal", formData.sellProposal);
-        formDataToSend.append("profession", formData.profession); // This line is already correct
+        formDataToSend.append("profession", formData.profession);
         formDataToSend.append("timeframe", formData.timeframe);
         formDataToSend.append("remarks", formData.remarks);
         
-        // Optional: Add subject line
         formDataToSend.append("subject", `New Enquiry from ${formData.name}`);
         
-        // Optional: Add from_name (will appear in email headers)
         formDataToSend.append("from_name", "Solar Website Enquiry");
-        
-        // Honeypot field to prevent spam
+      
         formDataToSend.append("botcheck", "");
         
-        // Convert FormData to JSON
         const object = Object.fromEntries(formDataToSend);
         const json = JSON.stringify(object);
         
@@ -128,16 +126,10 @@ const Enquiry = () => {
         console.log("Response from Web3Forms:", response);
         
         if (response.success) {
-          // Set success status instead of alert
-          setSubmitStatus({
-            success: true,
-            message: 'Your enquiry has been submitted successfully! We will get back to you soon.'
-          });
+          // Instead of setting success status, redirect to thank you page
           setFormData(initialFormData);
           setErrors({});
-          
-          // Scroll to top of form to show success message
-          window.scrollTo({ top: document.getElementById('enquiry-form')?.offsetTop || 0, behavior: 'smooth' });
+          navigate('/thank-you');
         } else {
           throw new Error(response.message || "Something went wrong");
         }
